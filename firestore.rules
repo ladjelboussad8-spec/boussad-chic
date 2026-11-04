@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'N0FGcJ2tIzcOu8GpQNidQFdqdGe2';
+    }
+    match /store/{document} {
+      allow read: if document == 'public';
+      allow write: if isAdmin();
+    }
+    match /orders/{orderId} {
+      allow create: if request.resource.data.keys().hasAll(['customer','phone','items','wilaya','carrier','deliveryType','createdAt'])
+                    && request.resource.data.customer is string
+                    && request.resource.data.phone is string
+                    && request.resource.data.items is list;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}
