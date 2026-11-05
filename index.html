@@ -36,7 +36,12 @@ alert('رقم الهاتف غير صحيح! يرجى إدخال رقم جزائ�
 document.getElementById('cPhone').focus();
 return;
 }
-
+const submitButton=e.submitter;
+if(submitButton?.disabled)return;
+if(submitButton){
+  submitButton.disabled=true;
+  setTimeout(()=>{submitButton.disabled=false;},3000);
+}
 let items;if(e.target.dataset.mode==='single'){let q=Number(document.getElementById('oQty').value);if(q<1||q>selectedProduct.stock)return alert('الكمية المطلوبة غير متوفرة');items=[{id:selectedProduct.id,name:selectedProduct.name,price:selectedProduct.price,color:document.getElementById('oColor').value,size:document.getElementById('oSize').value,qty:q}]}else items=cart.map(x=>({...x}));for(let x of items){let p=data.products.find(p=>p.id===x.id);if(!p||p.stock<x.qty)return alert('الكمية لم تعد متوفرة للمنتج: '+x.name)}items.forEach(x=>{data.products.find(p=>p.id===x.id).stock-=x.qty});let wilaya=document.getElementById('cWilaya').value,deliveryType=document.getElementById('cDeliveryType').value,carrier=document.getElementById('cCarrier').value,configured=((data.shippingPrices||{})[carrier]||{})[wilaya]||{},fee=configured[deliveryType==='المنزل'?'home':'office'];let order={id:'BC-'+Date.now().toString().slice(-7),date:new Date().toLocaleString('ar-DZ'),customer:document.getElementById('cName').value,phone:document.getElementById('cPhone').value,address:document.getElementById('cAddress').value,deliveryType,carrier,wilaya,city:document.getElementById('cCity').value,note:document.getElementById('cNote').value,items,delivery:(fee===undefined||fee===null||fee==='')?null:Number(fee),status:'جديد'};data.orders.unshift(order);save();window.firebaseCreateOrder?.(order).catch(err=>console.error('Cloud order save failed',err));cart=[];renderCart();closeModal('orderModal');alert('تم تسجيل طلبك التجريبي بنجاح. رقم الطلب: '+order.id+' — سيتم تأكيد سعر التوصيل معك من الإدارة.');e.target.reset();renderProducts()};
 function openAdminLogin(){openModal('loginModal')}
 // دخول الإدارة من الهاتف: اضغط على شعار المتجر خمس مرات متتالية خلال 3 ثوانٍ.
