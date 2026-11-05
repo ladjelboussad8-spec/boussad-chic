@@ -64,6 +64,9 @@ const firebaseConfig = {
 };
 const ADMIN_UID = 'N0FGcJ2tIzcOu8GpQNidQFdqdGe2';
 const app = initializeApp(firebaseConfig), auth = getAuth(app), db = getFirestore(app);
+  window.firebaseUpdateOrderStatus=async(id,status)=>{
+  await updateDoc(doc(db,'orders',id),{status});
+};
 const status = (msg)=>{const el=document.getElementById('cloudStatus');if(el)el.textContent=msg};
 const waitForApp=()=>new Promise(resolve=>{const tick=()=>{if(window.getStoreData)resolve();else setTimeout(tick,50)};tick()});
 await waitForApp();
