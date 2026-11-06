@@ -944,7 +944,7 @@ return `
 <div onclick="const p=document.getElementById('${panelId}');const a=this.querySelector('.order-arrow');const opened=p.style.display==='block';p.style.display=opened?'none':'block';a.textContent=opened?'▼':'▲';"
 style="cursor:pointer;padding:12px;font-weight:bold;display:flex;justify-content:space-between;align-items:center">
 <span>رقم الطلب: ${esc(o.id)}</span>
-<span class="order-arrow" style="font-size:24px;color:white">▼</span>
+<span class="order-arrow" style="font-size:24px;color:red">▼</span>
 </div>
 <div id="${panelId}" style="display:none;padding-top:10px">
 ${content}
