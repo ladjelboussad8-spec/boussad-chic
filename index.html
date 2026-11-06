@@ -880,7 +880,7 @@ const cancelledOrders=data.orders.filter(o=>o.status==='ملغي');
 
 document.getElementById('adminOrders').innerHTML=`
 <h3>الطلبات المتبقية (${activeOrders.length})</h3>
-${activeOrders.map(o=>orderRow(o,true)).join('')||'<div class="empty">لا توجد طلبات متبقية.</div>'}
+${activeOrders.map(orderRow).join('')||'<div class="empty">لا توجد طلبات متبقية.</div>'}
 
 <hr>
 <h3>الطلبات المسلّمة (${deliveredOrders.length})</h3>
