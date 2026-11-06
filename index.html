@@ -877,7 +877,7 @@ ${deliveredOrders.map(orderRow).join('')||'<div class="empty">لا توجد طل
 
 <hr>
 <h3>الطلبات الملغاة (${cancelledOrders.length})</h3>
-${cancelledOrders.map(orderRow).join('')||'<div class="empty">لا توجد طلبات ملغاة.</div>'}
+${cancelledOrders.map(o=>orderRow(o,true)).join('')||'<div class="empty">لا توجد طلبات ملغاة.</div>'}
 `;
 
 renderShippingPrices();
