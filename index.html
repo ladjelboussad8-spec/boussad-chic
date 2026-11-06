@@ -937,16 +937,19 @@ ${(o.items||[]).map(x=>`${esc(x.name)} (${esc(x.color)}, ${esc(x.size)}) × ${x.
 <button class="ghost" onclick="setStatus('${o.id}')">تحديث الحالة</button>
 </div>
 `;
-
 if(compact){
+const panelId='order-details-'+String(o.id).replace(/[^a-zA-Z0-9_-]/g,'');
 return `
-<details class="cartline" style="display:block">
-<summary style="cursor:pointer;padding:12px;font-weight:bold;list-style:none;display:flex;justify-content:space-between;align-items:center">
+<div class="cartline" style="display:block">
+<div onclick="const p=document.getElementById('${panelId}');const a=this.querySelector('.order-arrow');const opened=p.style.display==='block';p.style.display=opened?'none':'block';a.textContent=opened?'▼':'▲';"
+style="cursor:pointer;padding:12px;font-weight:bold;display:flex;justify-content:space-between;align-items:center">
 <span>رقم الطلب: ${esc(o.id)}</span>
-<span style="display:inline-block !important;font-size:30px !important;color:red !important;font-weight:bold !important">▼</span>
-</summary>
-<div style="padding-top:10px">${content}</div>
-</details>`;
+<span class="order-arrow" style="font-size:24px;color:white">▼</span>
+</div>
+<div id="${panelId}" style="display:none;padding-top:10px">
+${content}
+</div>
+</div>`;
 }
 
 return `<div class="cartline" style="display:block">${content}</div>`;
