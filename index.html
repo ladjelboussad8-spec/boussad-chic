@@ -1,65 +1,121 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BOUSSAD CHIC | متجر الأزياء</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BOUSSAD CHIC | متجر الأزياء</title>
 <style>
-:root{--bg:#0b0b0b;--panel:#151515;--line:#292929;--muted:#a5a5a5;--white:#f7f7f5;--gold:#c9a96e;--danger:#d66;--radius:18px}*{box-sizing:border-box}body{margin:0;background:#0b0b0b;color:var(--white);font-family:Arial,Tahoma,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 16px;background:var(--white);color:#111;font-weight:700}button.ghost{background:#222;color:#fff;border:1px solid #333}button.gold{background:var(--gold);color:#111}button.danger{background:#4a2020;color:#ffdede}.wrap{max-width:1200px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:14px 0 20px;gap:14px}.brand{font-size:24px;letter-spacing:3px;font-weight:900}.brand small{display:block;font-size:10px;letter-spacing:4px;color:var(--muted);margin-top:5px}.nav{display:flex;gap:8px;flex-wrap:wrap}.hero{padding:48px 0 30px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}.eyebrow{color:var(--gold);letter-spacing:3px;font-size:12px}.hero h1{font-size:clamp(34px,6vw,66px);line-height:1.1;margin:12px 0}.hero p{color:var(--muted);line-height:1.9;max-width:550px}.hero-art{min-height:280px;border-radius:24px;background:linear-gradient(135deg,#292929,#111 55%,#4b3c2b);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.hero-art:before{content:'BC';font-size:150px;font-weight:900;letter-spacing:-15px;color:#ffffff12}.hero-art span{position:absolute;bottom:20px;right:22px;letter-spacing:4px;color:#ddd;font-size:12px}.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:25px 0 16px;flex-wrap:wrap}.filters{display:flex;gap:8px;flex-wrap:wrap}.chip{background:#1b1b1b;color:#ddd;border:1px solid #333;padding:9px 14px;border-radius:30px}.chip.active{background:var(--white);color:#111}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}.photo{height:220px;background:linear-gradient(145deg,#242424,#101010);display:flex;align-items:center;justify-content:center;color:#777;font-size:13px;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover}.pbody{padding:14px}.pbody h3{font-size:16px;margin:0 0 7px}.muted{color:var(--muted);font-size:13px}.price{font-weight:800;margin:12px 0}.section-title{font-size:22px;margin:34px 0 14px}.footer{border-top:1px solid var(--line);margin-top:45px;padding:22px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}.modal.show{display:flex}.dialog{background:#151515;border:1px solid #333;border-radius:20px;width:min(560px,100%);max-height:92vh;overflow:auto;padding:22px}.dialog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.x{background:#292929;color:#fff;padding:8px 12px}.field{display:grid;gap:7px;margin:12px 0}.field label{font-size:13px;color:#ccc}.field input,.field select,.field textarea{background:#0d0d0d;border:1px solid #353535;color:#fff;border-radius:10px;padding:12px;width:100%}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-layout{display:grid;grid-template-columns:220px 1fr;gap:18px;margin-top:22px}.side,.admin-main{background:#141414;border:1px solid var(--line);border-radius:18px;padding:16px}.side button{display:block;width:100%;margin:7px 0;text-align:right}.side button.active{background:var(--gold)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{background:#1c1c1c;padding:17px;border-radius:14px;border:1px solid #303030}.stat b{display:block;font-size:25px;margin-top:9px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:right;padding:12px;border-bottom:1px solid #303030;font-size:13px}th{color:var(--gold)}.hidden{display:none!important}.empty{padding:40px;text-align:center;color:var(--muted);border:1px dashed #444;border-radius:16px}.notice{padding:12px;border:1px solid #5a4b30;background:#282115;color:#e8d7b7;border-radius:12px;font-size:13px;line-height:1.7;margin:14px 0}.actions{display:flex;gap:8px;flex-wrap:wrap}.badge{font-size:11px;border-radius:20px;padding:5px 9px;background:#272727;color:#ddd}.admin-top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.qty{width:70px!important}.cartline{display:flex;justify-content:space-between;border-bottom:1px solid #333;padding:12px 0;gap:10px}.small{font-size:12px;color:var(--muted)}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.admin-layout{grid-template-columns:1fr}.side{display:flex;overflow:auto;gap:6px}.side button{min-width:120px;text-align:center}.stats{grid-template-columns:1fr 1fr}}@media(max-width:520px){.wrap{padding:14px}.grid{gap:10px}.photo{height:170px}.row{grid-template-columns:1fr}.brand{font-size:19px}.hero{padding-top:30px}.hero-art{min-height:190px}.stats{grid-template-columns:1fr 1fr}}
-body.light-mode {
-  background: #f5f5f2;
-  color: #171717;
+:root{--bg:#0b0b0b;--panel:#151515;--line:#292929;--muted:#a5a5a5;--white:#f7f7f5;--gold:#c9a96e;--danger:#d66;--radius:18px}
+*{box-sizing:border-box}
+body{margin:0;background:#0b0b0b;color:var(--white);font-family:Arial,Tahoma,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0;border-radius:12px;padding:12px 16px;background:var(--white);color:#111;font-weight:700}
+button.ghost{background:#222;color:#fff;border:1px solid #333}
+button.gold{background:var(--gold);color:#111}
+button.danger{background:#4a2020;color:#ffdede}
+.wrap{max-width:1200px;margin:auto;padding:22px}
+.top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:14px 0 20px;gap:14px}
+.brand{font-size:24px;letter-spacing:3px;font-weight:900}
+.brand small{display:block;font-size:10px;letter-spacing:4px;color:var(--muted);margin-top:5px}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.hero{padding:48px 0 30px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+.eyebrow{color:var(--gold);letter-spacing:3px;font-size:12px}
+.hero h1{font-size:clamp(34px,6vw,66px);line-height:1.1;margin:12px 0}
+.hero p{color:var(--muted);line-height:1.9;max-width:550px}
+.hero-art{min-height:280px;border-radius:24px;background:linear-gradient(135deg,#292929,#111 55%,#4b3c2b);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-art:before{content:'BC';font-size:150px;font-weight:900;letter-spacing:-15px;color:#ffffff12}
+.hero-art span{position:absolute;bottom:20px;right:22px;letter-spacing:4px;color:#ddd;font-size:12px}
+.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:25px 0 16px;flex-wrap:wrap}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#1b1b1b;color:#ddd;border:1px solid #333;padding:9px 14px;border-radius:30px}
+.chip.active{background:var(--white);color:#111}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.product{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.photo{height:220px;background:linear-gradient(145deg,#242424,#101010);display:flex;align-items:center;justify-content:center;color:#777;font-size:13px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.pbody{padding:14px}
+.pbody h3{font-size:16px;margin:0 0 7px}
+.muted{color:var(--muted);font-size:13px}
+.price{font-weight:800;margin:12px 0}
+.section-title{font-size:22px;margin:34px 0 14px}
+.footer{border-top:1px solid var(--line);margin-top:45px;padding:22px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}
+.modal.show{display:flex}
+.dialog{background:#151515;border:1px solid #333;border-radius:20px;width:min(560px,100%);max-height:92vh;overflow:auto;padding:22px}
+.dialog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.x{background:#292929;color:#fff;padding:8px 12px}
+.field{display:grid;gap:7px;margin:12px 0}
+.field label{font-size:13px;color:#ccc}
+.field input,.field select,.field textarea{background:#0d0d0d;border:1px solid #353535;color:#fff;border-radius:10px;padding:12px;width:100%}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.admin-layout{display:grid;grid-template-columns:220px 1fr;gap:18px;margin-top:22px}
+.side,.admin-main{background:#141414;border:1px solid var(--line);border-radius:18px;padding:16px}
+.side button{display:block;width:100%;margin:7px 0;text-align:right}
+.side button.active{background:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{background:#1c1c1c;padding:17px;border-radius:14px;border:1px solid #303030}
+.stat b{display:block;font-size:25px;margin-top:9px}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:650px}
+th,td{text-align:right;padding:12px;border-bottom:1px solid #303030;font-size:13px}
+th{color:var(--gold)}
+.hidden{display:none!important}
+.empty{padding:40px;text-align:center;color:var(--muted);border:1px dashed #444;border-radius:16px}
+.notice{padding:12px;border:1px solid #5a4b30;background:#282115;color:#e8d7b7;border-radius:12px;font-size:13px;line-height:1.7;margin:14px 0}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.badge{font-size:11px;border-radius:20px;padding:5px 9px;background:#272727;color:#ddd}
+.admin-top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.qty{width:70px!important}
+.cartline{display:flex;justify-content:space-between;border-bottom:1px solid #333;padding:12px 0;gap:10px}
+.small{font-size:12px;color:var(--muted)}
+
+/* تنسيق التحليل الشهري */
+.monthly-controls{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:16px 0}
+.monthly-controls .field{min-width:160px;flex:1}
+.monthly-chart-wrap{background:#1c1c1c;border:1px solid #303030;border-radius:14px;padding:14px;margin-top:18px}
+#monthlyChart{width:100%;height:260px;display:block}
+.monthly-chart-title{margin:4px 0 12px}
+body.light-mode .monthly-chart-wrap{background:#fff;border-color:#ddd}
+
+@media(max-width:850px){
+.grid{grid-template-columns:repeat(2,1fr)}
+.hero{grid-template-columns:1fr}
+.admin-layout{grid-template-columns:1fr}
+.side{display:flex;overflow:auto;gap:6px}
+.side button{min-width:120px;text-align:center}
+.stats{grid-template-columns:1fr 1fr}
 }
+@media(max-width:520px){
+.wrap{padding:14px}
+.grid{gap:10px}
+.photo{height:170px}
+.row{grid-template-columns:1fr}
+.brand{font-size:19px}
+.hero{padding-top:30px}
+.hero-art{min-height:190px}
+.stats{grid-template-columns:1fr 1fr}
+}
+body.light-mode{background:#f5f5f2;color:#171717}
 body.light-mode .product,
 body.light-mode .dialog,
 body.light-mode .side,
 body.light-mode .admin-main,
-body.light-mode .stat {
-  background: #fff;
-  color: #171717;
-  border-color: #ddd;
-}
-body.light-mode .chip {
-  background: #eee;
-  color: #333;
-  border-color: #ddd;
-}
-body.light-mode button.ghost {
-  background: #eee;
-  color: #222;
-  border-color: #ccc;
-}
+body.light-mode .stat{background:#fff;color:#171717;border-color:#ddd}
+body.light-mode .chip{background:#eee;color:#333;border-color:#ddd}
+body.light-mode button.ghost{background:#eee;color:#222;border-color:#ccc}
 body.light-mode .field input,
 body.light-mode .field select,
-body.light-mode .field textarea {
-  background: #fff;
-  color: #111;
-  border-color: #ccc;
-}
-body.light-mode .field label {
-  color: #444;
-}
-body.light-mode .notice {
-  background: #fff8e8;
-  color: #604b24;
-  border-color: #e4d3ad;
-}
-body.light-mode .badge {
-  background: #eee;
-  color: #333;
-}
-body.light-mode th,
-body.light-mode td {
-  border-color: #ddd;
-}
-body.light-mode .cartline {
-  border-color: #ddd;
-}
-body.light-mode .x {
-  background: #eee;
-  color: #111;
-}
-</style></head>
-<body><div class="wrap">
+body.light-mode .field textarea{background:#fff;color:#111;border-color:#ccc}
+body.light-mode .field label{color:#444}
+body.light-mode .notice{background:#fff8e8;color:#604b24;border-color:#e4d3ad}
+body.light-mode .badge{background:#eee;color:#333}
+body.light-mode th,body.light-mode td{border-color:#ddd}
+body.light-mode .cartline{border-color:#ddd}
+body.light-mode .x{background:#eee;color:#111}
+</style>
+</head>
+<body>
+<div class="wrap">
 <header class="top">
 <div class="brand" id="brandLogo" role="button" tabindex="0" aria-label="شعار المتجر" title="BOUSSAD CHIC">BOUSSAD CHIC<small>STYLE • EVERY DAY</small></div>
 <nav class="nav">
@@ -68,24 +124,372 @@ body.light-mode .x {
 <button class="ghost" onclick="openCart()">السلة <span id="cartCount">0</span></button>
 </nav>
 </header>
-<main id="shopView"><section class="hero"><div><div class="eyebrow">COLLECTION NO. 01</div><h1>أناقتك،<br>بأسلوبك.</h1><p>اكتشف تشكيلة BOUSSAD CHIC من الأزياء النسائية والرجالية. اختَر القطعة، اللون والمقاس، وسنجهّز طلبك بعناية.</p><button class="gold" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">اكتشف المنتجات</button></div><div class="hero-art"><span>BOUSSAD CHIC — ALGERIA</span></div></section>
-<div class="toolbar" id="catalog"><div><div class="eyebrow">THE COLLECTION</div><h2 style="margin:7px 0">تسوّق التشكيلة</h2></div><div class="filters"><button class="chip active" onclick="filterProducts('all',this)">الكل</button><button class="chip" onclick="filterProducts('نساء',this)">نساء</button><button class="chip" onclick="filterProducts('رجال',this)">رجال</button></div></div><div class="grid" id="productGrid"></div></main>
-<main id="adminView" class="hidden"><div class="admin-top"><div><div class="eyebrow">CONTROL CENTER</div><h2 style="margin:7px 0">لوحة إدارة المتجر</h2></div><div class="actions"><button class="ghost" onclick="showShop()">العودة إلى المتجر</button><button class="danger" onclick="adminLogout()">تسجيل الخروج</button></div></div><div class="admin-layout"><aside class="side"><button class="active" <button onclick="adminTab('monthly',this)">📊 التحليل الشهري</button> <button onclick="adminTab('overview',this)">نظرة عامة</button><button onclick="adminTab('products',this)">المنتجات</button><button onclick="adminTab('orders',this)">الطلبات</button><button onclick="adminTab('shipping',this)">أسعار التوصيل</button></aside><section class="admin-main"><div id="tab-overview"><div class="stats" id="stats"></div><div class="notice" id="cloudStatus">جارٍ الاتصال بقاعدة بيانات Firebase…</div><h3>آخر الطلبات</h3><div id="recentOrders"></div></div><div id="tab-products" class="hidden"><div class="admin-top"><h3>إدارة المنتجات</h3><button class="gold" onclick="openProductForm()">+ إضافة منتج</button></div><div id="adminProducts"></div></div><div id="tab-orders" class="hidden"><h3>طلبات الزبائن</h3><div id="adminOrders"></div></div><div id="tab-shipping" class="hidden"><h3>إدارة شركات التوصيل وأسعارها</h3><p class="small">أضف أو احذف شركات التوصيل وقتما تشاء، ثم أدخل سعر المنزل والمكتب لكل ولاية بالدينار الجزائري.</p><div class="row"><div class="field"><label>إضافة شركة توصيل جديدة</label><input id="newShippingCarrier" placeholder="مثال: Yalidine أو ZR Express"></div><div class="field" style="justify-content:end"><button class="gold" type="button" onclick="addShippingCarrier()">+ إضافة الشركة</button></div></div><div class="row"><div class="field"><label>شركة التوصيل المختارة</label><select id="adminShippingCarrier" onchange="renderShippingPrices()"></select></div><div class="field" style="justify-content:end"><button class="danger" type="button" onclick="removeShippingCarrier()">حذف الشركة المختارة</button></div></div><div id="shippingPrices"></div><button class="gold" type="button" onclick="saveShippingPrices()">حفظ جميع الأسعار</button></div></section></div></main>
-<footer class="footer"><span>© 2026 BOUSSAD CHIC. جميع الحقوق محفوظة.</span><span>صُمّم للأناقة اليومية</span></footer></div>
-<div class="modal" id="productModal"><div class="dialog"><div class="dialog-head"><h3 id="productFormTitle">إضافة منتج</h3><button class="x" onclick="closeModal('productModal')">✕</button></div><form id="productForm"><input type="hidden" id="editId"><div class="row"><div class="field"><label>اسم المنتج</label><input id="pName" required></div><div class="field"><label>نوع المنتج</label><select id="pType"><option>نساء</option><option>رجال</option></select></div></div><div class="row"><div class="field"><label>السعر (دج)</label><input id="pPrice" type="number" min="0" required></div><div class="field"><label>الكمية المتوفرة</label><input id="pStock" type="number" min="0" required></div></div><div class="row"><div class="field"><label>المقاسات (افصل بينها بفاصلة)</label><input id="pSizes" placeholder="S, M, L, XL" required></div><div class="field"><label>الألوان (افصل بينها بفاصلة)</label><input id="pColors" placeholder="أسود, أبيض" required></div></div><div class="field"><label>صورة المنتج</label><input id="pImage" type="file" accept="image/*"><div class="small">يمكن اختيار صورة من جهازك. تُحفظ محلياً في هذا النموذج.</div></div><button class="gold" type="submit" style="width:100%">حفظ المنتج</button></form></div></div>
-<div class="modal" id="orderModal"><div class="dialog"><div class="dialog-head"><h3>إتمام الطلب</h3><button class="x" onclick="closeModal('orderModal')">✕</button></div><div id="orderProductSummary"></div><form id="orderForm"><div class="row"><div class="field"><label>الاسم واللقب</label><input id="cName" required></div><div class="field"><label>رقم الهاتف</label><input id="cPhone" type="tel" required></div></div><div class="field"><label>شركة التوصيل</label><select id="cCarrier" required><option value="">اختر شركة التوصيل</option></select></div><div class="field"><label>نوع التوصيل</label><select id="cDeliveryType" required><option value="">اختر طريقة التوصيل</option><option value="المنزل">التوصيل إلى المنزل</option><option value="المكتب">التوصيل إلى المكتب</option></select></div><div class="field"><label>العنوان بالتفصيل (عنوان المنزل أو المكتب)</label><input id="cAddress" required></div><div class="row"><div class="field"><label>الولاية</label><select id="cWilaya" required><option value="">اختر الولاية</option></select></div><div class="field"><label>البلدية</label><input id="cCity" required></div></div><div class="field"><label>ملاحظة (اختياري)</label><textarea id="cNote" rows="2"></textarea></div><div class="notice" id="deliveryEstimate">اختر الولاية ونوع التوصيل لعرض سعر التوصيل المحدد من الإدارة.</div><button class="gold" style="width:100%">تأكيد الطلب</button></form></div></div>
-<div class="modal" id="cartModal"><div class="dialog"><div class="dialog-head"><h3>سلة التسوق</h3><button class="x" onclick="closeModal('cartModal')">✕</button></div><div id="cartItems"></div><button class="gold" style="width:100%;margin-top:14px" onclick="checkoutCart()">متابعة لإتمام الطلب</button></div></div>
-<div class="modal" id="loginModal"><div class="dialog" style="max-width:400px"><div class="dialog-head"><h3>دخول الإدارة</h3><button class="x" onclick="closeModal('loginModal')">✕</button></div><form id="loginForm"><div class="field"><label>البريد الإلكتروني</label><input id="adminEmail" type="email" required placeholder="البريد الإلكتروني المسجل في Firebase"><label>كلمة المرور</label><input id="adminPassword" type="password" required placeholder="كلمة مرور حساب Firebase"></div><div class="notice">تسجيل الدخول محمي عبر Firebase Authentication. لا تشارك كلمة المرور مع أي شخص.</div><button class="gold" style="width:100%">دخول</button></form></div></div>
+
+<main id="shopView">
+<section class="hero">
+<div>
+<div class="eyebrow">COLLECTION NO. 01</div>
+<h1>أناقتك،<br>بأسلوبك.</h1>
+<p>اكتشف تشكيلة BOUSSAD CHIC من الأزياء النسائية والرجالية. اختَر القطعة، اللون والمقاس، وسنجهّز طلبك بعناية.</p>
+<button class="gold" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">اكتشف المنتجات</button>
+</div>
+<div class="hero-art"><span>BOUSSAD CHIC — ALGERIA</span></div>
+</section>
+<div class="toolbar" id="catalog">
+<div><div class="eyebrow">THE COLLECTION</div><h2 style="margin:7px 0">تسوّق التشكيلة</h2></div>
+<div class="filters">
+<button class="chip active" onclick="filterProducts('all',this)">الكل</button>
+<button class="chip" onclick="filterProducts('نساء',this)">نساء</button>
+<button class="chip" onclick="filterProducts('رجال',this)">رجال</button>
+</div>
+</div>
+<div class="grid" id="productGrid"></div>
+</main>
+
+<main id="adminView" class="hidden">
+<div class="admin-top">
+<div><div class="eyebrow">CONTROL CENTER</div><h2 style="margin:7px 0">لوحة إدارة المتجر</h2></div>
+<div class="actions">
+<button class="ghost" onclick="showShop()">العودة إلى المتجر</button>
+<button class="danger" onclick="adminLogout()">تسجيل الخروج</button>
+</div>
+</div>
+
+<div class="admin-layout">
+<aside class="side">
+<button onclick="adminTab('monthly',this)">📊 التحليل الشهري</button>
+<button class="active" onclick="adminTab('overview',this)">نظرة عامة</button>
+<button onclick="adminTab('products',this)">المنتجات</button>
+<button onclick="adminTab('orders',this)">الطلبات</button>
+<button onclick="adminTab('shipping',this)">أسعار التوصيل</button>
+</aside>
+
+<section class="admin-main">
+<div id="tab-monthly" class="hidden">
+<h3>التحليل الشهري</h3>
+<p class="small">اختر الشهر والسنة لعرض عدد الطلبات والمدخول المحقق من المنتجات المسلّمة فقط.</p>
+<div class="monthly-controls">
+<div class="field">
+<label for="monthlyPicker">الشهر والسنة</label>
+<input type="month" id="monthlyPicker">
+</div>
+</div>
+<div class="stats" id="monthlyStats">
+<div class="stat">عدد الطلبات<b>0</b></div>
+<div class="stat">المدخول المحقق<b>0 دج</b></div>
+</div>
+<div class="monthly-chart-wrap">
+<h4 class="monthly-chart-title">تطور المدخول خلال آخر 6 أشهر</h4>
+<canvas id="monthlyChart" height="260"></canvas>
+</div>
+</div>
+
+<div id="tab-overview">
+<div class="stats" id="stats"></div>
+<div class="notice" id="cloudStatus">جارٍ الاتصال بقاعدة بيانات Firebase…</div>
+<h3>آخر الطلبات</h3>
+<div id="recentOrders"></div>
+</div>
+<div id="tab-products" class="hidden">
+<div class="admin-top"><h3>إدارة المنتجات</h3><button class="gold" onclick="openProductForm()">+ إضافة منتج</button></div>
+<div id="adminProducts"></div>
+</div>
+<div id="tab-orders" class="hidden"><h3>طلبات الزبائن</h3><div id="adminOrders"></div></div>
+<div id="tab-shipping" class="hidden">
+<h3>إدارة شركات التوصيل وأسعارها</h3>
+<p class="small">أضف أو احذف شركات التوصيل وقتما تشاء، ثم أدخل سعر المنزل والمكتب لكل ولاية بالدينار الجزائري.</p>
+<div class="row">
+<div class="field"><label>إضافة شركة توصيل جديدة</label><input id="newShippingCarrier" placeholder="مثال: Yalidine أو ZR Express"></div>
+<div class="field" style="justify-content:end"><button class="gold" type="button" onclick="addShippingCarrier()">+ إضافة الشركة</button></div>
+</div>
+<div class="row">
+<div class="field"><label>شركة التوصيل المختارة</label><select id="adminShippingCarrier" onchange="renderShippingPrices()"></select></div>
+<div class="field" style="justify-content:end"><button class="danger" type="button" onclick="removeShippingCarrier()">حذف الشركة المختارة</button></div>
+</div>
+<div id="shippingPrices"></div>
+<button class="gold" type="button" onclick="saveShippingPrices()">حفظ جميع الأسعار</button>
+</div>
+</section>
+</div>
+</main>
+
+<footer class="footer">
+<span>© 2026 BOUSSAD CHIC. جميع الحقوق محفوظة.</span>
+<span>صُمّم للأناقة اليومية</span>
+</footer>
+</div>
+
+<div class="modal" id="productModal">
+<div class="dialog">
+<div class="dialog-head"><h3 id="productFormTitle">إضافة منتج</h3><button class="x" onclick="closeModal('productModal')">✕</button></div>
+<form id="productForm">
+<input type="hidden" id="editId">
+<div class="row">
+<div class="field"><label>اسم المنتج</label><input id="pName" required></div>
+<div class="field"><label>نوع المنتج</label><select id="pType"><option>نساء</option><option>رجال</option></select></div>
+</div>
+<div class="row">
+<div class="field"><label>السعر (دج)</label><input id="pPrice" type="number" min="0" required></div>
+<div class="field"><label>الكمية المتوفرة</label><input id="pStock" type="number" min="0" required></div>
+</div>
+<div class="row">
+<div class="field"><label>المقاسات (افصل بينها بفاصلة)</label><input id="pSizes" placeholder="S, M, L, XL" required></div>
+<div class="field"><label>الألوان (افصل بينها بفاصلة)</label><input id="pColors" placeholder="أسود, أبيض" required></div>
+</div>
+<div class="field"><label>صورة المنتج</label><input id="pImage" type="file" accept="image/*"><div class="small">يمكن اختيار صورة من جهازك. تُحفظ محلياً في هذا النموذج.</div></div>
+<button class="gold" type="submit" style="width:100%">حفظ المنتج</button>
+</form>
+</div>
+</div>
+
+<div class="modal" id="orderModal">
+<div class="dialog">
+<div class="dialog-head"><h3>إتمام الطلب</h3><button class="x" onclick="closeModal('orderModal')">✕</button></div>
+<div id="orderProductSummary"></div>
+<form id="orderForm">
+<div class="row">
+<div class="field"><label>الاسم واللقب</label><input id="cName" required></div>
+<div class="field"><label>رقم الهاتف</label><input id="cPhone" type="tel" required></div>
+</div>
+<div class="field"><label>شركة التوصيل</label><select id="cCarrier" required><option value="">اختر شركة التوصيل</option></select></div>
+<div class="field"><label>نوع التوصيل</label><select id="cDeliveryType" required><option value="">اختر طريقة التوصيل</option><option value="المنزل">التوصيل إلى المنزل</option><option value="المكتب">التوصيل إلى المكتب</option></select></div>
+<div class="field"><label>العنوان بالتفصيل (عنوان المنزل أو المكتب)</label><input id="cAddress" required></div>
+<div class="row">
+<div class="field"><label>الولاية</label><select id="cWilaya" required><option value="">اختر الولاية</option></select></div>
+<div class="field"><label>البلدية</label><input id="cCity" required></div>
+</div>
+<div class="field"><label>ملاحظة (اختياري)</label><textarea id="cNote" rows="2"></textarea></div>
+<div class="notice" id="deliveryEstimate">اختر الولاية ونوع التوصيل لعرض سعر التوصيل المحدد من الإدارة.</div>
+<button class="gold" style="width:100%">تأكيد الطلب</button>
+</form>
+</div>
+</div>
+
+<div class="modal" id="cartModal">
+<div class="dialog">
+<div class="dialog-head"><h3>سلة التسوق</h3><button class="x" onclick="closeModal('cartModal')">✕</button></div>
+<div id="cartItems"></div>
+<button class="gold" style="width:100%;margin-top:14px" onclick="checkoutCart()">متابعة لإتمام الطلب</button>
+</div>
+</div>
+
+<div class="modal" id="loginModal">
+<div class="dialog" style="max-width:400px">
+<div class="dialog-head"><h3>دخول الإدارة</h3><button class="x" onclick="closeModal('loginModal')">✕</button></div>
+<form id="loginForm">
+<div class="field">
+<label>البريد الإلكتروني</label><input id="adminEmail" type="email" required placeholder="البريد الإلكتروني المسجل في Firebase">
+<label>كلمة المرور</label><input id="adminPassword" type="password" required placeholder="كلمة مرور حساب Firebase">
+</div>
+<div class="notice">تسجيل الدخول محمي عبر Firebase Authentication. لا تشارك كلمة المرور مع أي شخص.</div>
+<button class="gold" style="width:100%">دخول</button>
+</form>
+</div>
+</div>
+
 <script>
-const KEY='boussad_chic_v1';let data=JSON.parse(localStorage.getItem(KEY)||'null')||{products:[{id:'p1',name:'قميص كلاسيكي',type:'رجال',price:4200,stock:12,sizes:['M','L','XL'],colors:['أسود','أبيض'],image:''},{id:'p2',name:'فستان أنيق',type:'نساء',price:6800,stock:8,sizes:['S','M','L'],colors:['أسود','بيج'],image:''},{id:'p3',name:'سترة يومية',type:'رجال',price:7500,stock:5,sizes:['L','XL','XXL'],colors:['أسود','رمادي'],image:''},{id:'p4',name:'طقم نسائي',type:'نساء',price:8900,stock:6,sizes:['S','M','L'],colors:['أسود','وردي'],image:''}],orders:[],deliveryPrices:{}};if(!data.deliveryPrices)data.deliveryPrices={};if(!data.shippingPrices)data.shippingPrices={'Aranex':{},'World Express':{}};if(!data.shippingPrices['Aranex'])data.shippingPrices['Aranex']={};if(!data.shippingPrices['World Express'])data.shippingPrices['World Express']={};if(!Array.isArray(data.shippingCarriers))data.shippingCarriers=['Aranex','World Express'];data.shippingCarriers=[...new Set([...data.shippingCarriers,'Aranex','World Express'])];let cart=[],activeFilter='all',selectedProduct=null;
-const wilayas=['أدرار','الشلف','الأغواط','أم البواقي','باتنة','بجاية','بسكرة','بشار','البليدة','البويرة','تمنراست','تبسة','تلمسان','تيارت','تيزي وزو','الجزائر','الجلفة','جيجل','سطيف','سعيدة','سكيكدة','سيدي بلعباس','عنابة','قالمة','قسنطينة','المدية','مستغانم','المسيلة','معسكر','ورقلة','وهران','البيض','إليزي','برج بوعريريج','بومرداس','الطارف','تندوف','تيسمسيلت','الوادي','خنشلة','سوق أهراس','تيبازة','ميلة','عين الدفلى','النعامة','عين تموشنت','غرداية','غليزان','تيميمون','برج باجي مختار','أولاد جلال','بني عباس','عين صالح','عين قزام','تقرت','جانت','المغير','المنيعة'];document.getElementById('cWilaya').innerHTML+=[...wilayas].map(x=>`<option>${x}</option>`).join('');function save(){try{localStorage.setItem(KEY,JSON.stringify(data));window.queueCloudSave?.();return true}catch(err){alert('تعذر حفظ البيانات في هذا العارض. افتح الموقع في متصفح Chrome مباشرة ثم أعد المحاولة.');console.error(err);return false}}function money(n){return Number(n).toLocaleString('fr-DZ')+' دج'}function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function refreshCarrierSelects(){const admin=document.getElementById('adminShippingCarrier'),customer=document.getElementById('cCarrier');if(admin){const selected=admin.value;admin.innerHTML=data.shippingCarriers.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');if(data.shippingCarriers.includes(selected))admin.value=selected;}if(customer){const selected=customer.value;customer.innerHTML='<option value="">اختر شركة التوصيل</option>'+data.shippingCarriers.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');if(data.shippingCarriers.includes(selected))customer.value=selected;}}function addShippingCarrier(){const input=document.getElementById('newShippingCarrier'),name=input.value.trim();if(!name)return alert('اكتب اسم شركة التوصيل أولاً.');if(data.shippingCarriers.some(c=>c.toLowerCase()===name.toLowerCase()))return alert('هذه الشركة موجودة بالفعل.');data.shippingCarriers.push(name);data.shippingPrices[name]={};if(save()){input.value='';refreshCarrierSelects();document.getElementById('adminShippingCarrier').value=name;renderShippingPrices();alert('تمت إضافة شركة '+name+' بنجاح. أضف أسعارها حسب الولايات.');}}function removeShippingCarrier(){const select=document.getElementById('adminShippingCarrier'),name=select.value;if(!name)return alert('اختر شركة لحذفها.');if(data.shippingCarriers.length<=1)return alert('يجب الاحتفاظ بشركة توصيل واحدة على الأقل.');if(!confirm('هل تريد إزالة شركة '+name+' من خيارات التوصيل؟ ستبقى بيانات الطلبات السابقة محفوظة.'))return;data.shippingCarriers=data.shippingCarriers.filter(c=>c!==name);if(save()){refreshCarrierSelects();renderShippingPrices();updateDeliveryEstimate();alert('تمت إزالة الشركة من خيارات التوصيل.');}}function renderShippingPrices(){refreshCarrierSelects();const el=document.getElementById('shippingPrices');if(!el)return;const carrier=document.getElementById('adminShippingCarrier')?.value||data.shippingCarriers[0];const rates=data.shippingPrices[carrier]||{};el.innerHTML='<div class="table-wrap"><table><thead><tr><th>الولاية</th><th>المنزل (دج)</th><th>المكتب (دج)</th></tr></thead><tbody>'+wilayas.map((w,i)=>{let p=rates[w]||{};return `<tr><td>${i+1}. ${esc(w)}</td><td><input type="number" min="0" id="ship-home-${i}" value="${p.home??''}" placeholder="السعر" style="width:110px;background:#111;color:white;border:1px solid #444;border-radius:8px;padding:9px"></td><td><input type="number" min="0" id="ship-office-${i}" value="${p.office??''}" placeholder="السعر" style="width:110px;background:#111;color:white;border:1px solid #444;border-radius:8px;padding:9px"></td></tr>`}).join('')+'</tbody></table></div>'}
-function saveShippingPrices(){const carrier=document.getElementById('adminShippingCarrier')?.value||'Aranex';let next={...(data.shippingPrices[carrier]||{})};for(let i=0;i<wilayas.length;i++){let home=document.getElementById('ship-home-'+i).value.trim(),office=document.getElementById('ship-office-'+i).value.trim();for(let [v,n] of [[home,'المنزل'],[office,'المكتب']])if(v!==''&&(!Number.isFinite(Number(v))||Number(v)<0))return alert('تحقق من سعر '+n+' في ولاية '+wilayas[i]);next[wilayas[i]]={home:home===''?'':Math.round(Number(home)),office:office===''?'':Math.round(Number(office))}}data.shippingPrices[carrier]=next;if(save())alert('تم حفظ أسعار '+carrier+' لجميع الولايات بنجاح.')}
-function updateDeliveryEstimate(){let w=document.getElementById('cWilaya')?.value,t=document.getElementById('cDeliveryType')?.value,carrier=document.getElementById('cCarrier')?.value,box=document.getElementById('deliveryEstimate');if(!box)return;let p=(data.shippingPrices[carrier]||{})[w]||{},v=t==='المنزل'?p.home:t==='المكتب'?p.office:null;box.textContent=!w||!t||!carrier?'اختر شركة التوصيل والولاية ونوع التوصيل لعرض السعر.':(v!==''&&v!==undefined&&v!==null?'سعر التوصيل عبر '+carrier+' إلى '+t+' في '+w+': '+money(v):'لم تحدد الإدارة سعر '+carrier+' لهذه الولاية وهذا النوع بعد. ستتواصل معك الإدارة لتأكيد السعر.');}
-document.getElementById('cCarrier').addEventListener('change',updateDeliveryEstimate);document.getElementById('cWilaya').addEventListener('change',updateDeliveryEstimate);document.getElementById('cDeliveryType').addEventListener('change',updateDeliveryEstimate);refreshCarrierSelects();
-function renderProducts(){let list=data.products.filter(p=>activeFilter==='all'||p.type===activeFilter);document.getElementById('productGrid').innerHTML=list.length?list.map(p=>`<article class="product"><div class="photo">${p.image?`<img src="${p.image}" alt="${esc(p.name)}">`:'BOUSSAD CHIC'}</div><div class="pbody"><span class="badge">${esc(p.type)}</span><h3>${esc(p.name)}</h3><div class="muted">المقاسات: ${p.sizes.map(esc).join('، ')}</div><div class="price">${money(p.price)}</div><button class="gold" style="width:100%" onclick="chooseProduct('${p.id}')">اختيار المنتج</button></div></article>`).join(''):'<div class="empty">لا توجد منتجات في هذا القسم حالياً.</div>'}function filterProducts(f,b){activeFilter=f;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderProducts()}
-function chooseProduct(id){let p=data.products.find(x=>x.id===id);if(!p||p.stock<1)return alert('هذا المنتج غير متوفر حالياً');selectedProduct=p;document.getElementById('orderProductSummary').innerHTML=`<div class="cartline"><b>${esc(p.name)}</b><b>${money(p.price)}</b></div><div class="row"><div class="field"><label>اللون</label><select id="oColor">${p.colors.map(c=>`<option>${esc(c)}</option>`).join('')}</select></div><div class="field"><label>المقاس</label><select id="oSize">${p.sizes.map(s=>`<option>${esc(s)}</option>`).join('')}</select></div></div><div class="field"><label>الكمية</label><input id="oQty" type="number" min="1" max="${p.stock}" value="1"></div>`;document.getElementById('orderForm').dataset.mode='single';openModal('orderModal');updateDeliveryEstimate()}
-function openModal(id){document.getElementById(id).classList.add('show')}function closeModal(id){document.getElementById(id).classList.remove('show')}function openCart(){renderCart();openModal('cartModal')}function renderCart(){document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0);document.getElementById('cartItems').innerHTML=cart.length?cart.map((x,i)=>`<div class="cartline"><div><b>${esc(x.name)}</b><div class="small">${esc(x.color)} • ${esc(x.size)} • ${x.qty} قطعة</div></div><div>${money(x.price*x.qty)} <button class="danger" onclick="removeCart(${i})">حذف</button></div></div>`).join(''):'<div class="empty">سلتك فارغة.</div>'}function removeCart(i){cart.splice(i,1);renderCart()}function checkoutCart(){if(!cart.length)return alert('السلة فارغة');selectedProduct=null;document.getElementById('orderProductSummary').innerHTML=cart.map(x=>`<div class="cartline"><span>${esc(x.name)} — ${esc(x.color)} / ${esc(x.size)} × ${x.qty}</span><b>${money(x.price*x.qty)}</b></div>`).join('')+`<p><b>المجموع: ${money(cart.reduce((s,x)=>s+x.price*x.qty,0))}</b></p>`;document.getElementById('orderForm').dataset.mode='cart';closeModal('cartModal');openModal('orderModal');updateDeliveryEstimate()}
+  const KEY='boussad_chic_v1';
+let data=JSON.parse(localStorage.getItem(KEY)||'null')||{
+products:[
+{id:'p1',name:'قميص كلاسيكي',type:'رجال',price:4200,stock:12,sizes:['M','L','XL'],colors:['أسود','أبيض'],image:''},
+{id:'p2',name:'فستان أنيق',type:'نساء',price:6800,stock:8,sizes:['S','M','L'],colors:['أسود','بيج'],image:''},
+{id:'p3',name:'سترة يومية',type:'رجال',price:7500,stock:5,sizes:['L','XL','XXL'],colors:['أسود','رمادي'],image:''},
+{id:'p4',name:'طقم نسائي',type:'نساء',price:8900,stock:6,sizes:['S','M','L'],colors:['أسود','وردي'],image:''}
+],
+orders:[],
+deliveryPrices:{}
+};
+
+if(!data.deliveryPrices)data.deliveryPrices={};
+if(!data.shippingPrices)data.shippingPrices={'Aranex':{},'World Express':{}};
+if(!data.shippingPrices['Aranex'])data.shippingPrices['Aranex']={};
+if(!data.shippingPrices['World Express'])data.shippingPrices['World Express']={};
+if(!Array.isArray(data.shippingCarriers))data.shippingCarriers=['Aranex','World Express'];
+data.shippingCarriers=[...new Set([...data.shippingCarriers,'Aranex','World Express'])];
+
+let cart=[],activeFilter='all',selectedProduct=null;
+
+const wilayas=['أدرار','الشلف','الأغواط','أم البواقي','باتنة','بجاية','بسكرة','بشار','البليدة','البويرة','تمنراست','تبسة','تلمسان','تيارت','تيزي وزو','الجزائر','الجلفة','جيجل','سطيف','سعيدة','سكيكدة','سيدي بلعباس','عنابة','قالمة','قسنطينة','المدية','مستغانم','المسيلة','معسكر','ورقلة','وهران','البيض','إليزي','برج بوعريريج','بومرداس','الطارف','تندوف','تيسمسيلت','الوادي','خنشلة','سوق أهراس','تيبازة','ميلة','عين الدفلى','النعامة','عين تموشنت','غرداية','غليزان','تيميمون','برج باجي مختار','أولاد جلال','بني عباس','عين صالح','عين قزام','تقرت','جانت','المغير','المنيعة'];
+
+document.getElementById('cWilaya').innerHTML+=[...wilayas].map(x=>`<option>${x}</option>`).join('');
+
+function save(){
+try{
+localStorage.setItem(KEY,JSON.stringify(data));
+window.queueCloudSave?.();
+return true;
+}catch(err){
+alert('تعذر حفظ البيانات في هذا العارض. افتح الموقع في متصفح Chrome مباشرة ثم أعد المحاولة.');
+console.error(err);
+return false;
+}
+}
+
+function money(n){return Number(n).toLocaleString('fr-DZ')+' دج'}
+
+function esc(s){
+return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function refreshCarrierSelects(){
+const admin=document.getElementById('adminShippingCarrier');
+const customer=document.getElementById('cCarrier');
+
+if(admin){
+const selected=admin.value;
+admin.innerHTML=data.shippingCarriers.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+if(data.shippingCarriers.includes(selected))admin.value=selected;
+}
+
+if(customer){
+const selected=customer.value;
+customer.innerHTML='<option value="">اختر شركة التوصيل</option>'+data.shippingCarriers.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+if(data.shippingCarriers.includes(selected))customer.value=selected;
+}
+}
+
+function addShippingCarrier(){
+const input=document.getElementById('newShippingCarrier');
+const name=input.value.trim();
+if(!name)return alert('اكتب اسم شركة التوصيل أولاً.');
+if(data.shippingCarriers.some(c=>c.toLowerCase()===name.toLowerCase()))return alert('هذه الشركة موجودة بالفعل.');
+data.shippingCarriers.push(name);
+data.shippingPrices[name]={};
+if(save()){
+input.value='';
+refreshCarrierSelects();
+document.getElementById('adminShippingCarrier').value=name;
+renderShippingPrices();
+alert('تمت إضافة شركة '+name+' بنجاح. أضف أسعارها حسب الولايات.');
+}
+}
+
+function removeShippingCarrier(){
+const select=document.getElementById('adminShippingCarrier');
+const name=select.value;
+if(!name)return alert('اختر شركة لحذفها.');
+if(data.shippingCarriers.length<=1)return alert('يجب الاحتفاظ بشركة توصيل واحدة على الأقل.');
+if(!confirm('هل تريد إزالة شركة '+name+' من خيارات التوصيل؟ ستبقى بيانات الطلبات السابقة محفوظة.'))return;
+data.shippingCarriers=data.shippingCarriers.filter(c=>c!==name);
+if(save()){
+refreshCarrierSelects();
+renderShippingPrices();
+updateDeliveryEstimate();
+alert('تمت إزالة الشركة من خيارات التوصيل.');
+}
+}
+
+function renderShippingPrices(){
+refreshCarrierSelects();
+const el=document.getElementById('shippingPrices');
+if(!el)return;
+const carrier=document.getElementById('adminShippingCarrier')?.value||data.shippingCarriers[0];
+const rates=data.shippingPrices[carrier]||{};
+el.innerHTML='<div class="table-wrap"><table><thead><tr><th>الولاية</th><th>المنزل (دج)</th><th>المكتب (دج)</th></tr></thead><tbody>'+
+wilayas.map((w,i)=>{
+let p=rates[w]||{};
+return `<tr><td>${i+1}. ${esc(w)}</td><td><input type="number" min="0" id="ship-home-${i}" value="${p.home??''}" placeholder="السعر" style="width:110px;background:#111;color:white;border:1px solid #444;border-radius:8px;padding:9px"></td><td><input type="number" min="0" id="ship-office-${i}" value="${p.office??''}" placeholder="السعر" style="width:110px;background:#111;color:white;border:1px solid #444;border-radius:8px;padding:9px"></td></tr>`;
+}).join('')+'</tbody></table></div>';
+}
+
+function saveShippingPrices(){
+const carrier=document.getElementById('adminShippingCarrier')?.value||'Aranex';
+let next={...(data.shippingPrices[carrier]||{})};
+
+for(let i=0;i<wilayas.length;i++){
+let home=document.getElementById('ship-home-'+i).value.trim();
+let office=document.getElementById('ship-office-'+i).value.trim();
+
+for(let [v,n] of [[home,'المنزل'],[office,'المكتب']]){
+if(v!==''&&(!Number.isFinite(Number(v))||Number(v)<0))
+return alert('تحقق من سعر '+n+' في ولاية '+wilayas[i]);
+}
+
+next[wilayas[i]]={
+home:home===''?'':Math.round(Number(home)),
+office:office===''?'':Math.round(Number(office))
+};
+}
+
+data.shippingPrices[carrier]=next;
+if(save())alert('تم حفظ أسعار '+carrier+' لجميع الولايات بنجاح.');
+}
+
+function updateDeliveryEstimate(){
+let w=document.getElementById('cWilaya')?.value;
+let t=document.getElementById('cDeliveryType')?.value;
+let carrier=document.getElementById('cCarrier')?.value;
+let box=document.getElementById('deliveryEstimate');
+if(!box)return;
+
+let p=(data.shippingPrices[carrier]||{})[w]||{};
+let v=t==='المنزل'?p.home:t==='المكتب'?p.office:null;
+
+box.textContent=!w||!t||!carrier
+?'اختر شركة التوصيل والولاية ونوع التوصيل لعرض السعر.'
+:(v!==''&&v!==undefined&&v!==null
+?'سعر التوصيل عبر '+carrier+' إلى '+t+' في '+w+': '+money(v)
+:'لم تحدد الإدارة سعر '+carrier+' لهذه الولاية وهذا النوع بعد. ستتواصل معك الإدارة لتأكيد السعر.');
+}
+
+document.getElementById('cCarrier').addEventListener('change',updateDeliveryEstimate);
+document.getElementById('cWilaya').addEventListener('change',updateDeliveryEstimate);
+document.getElementById('cDeliveryType').addEventListener('change',updateDeliveryEstimate);
+refreshCarrierSelects();
+
+function renderProducts(){
+let list=data.products.filter(p=>activeFilter==='all'||p.type===activeFilter);
+
+document.getElementById('productGrid').innerHTML=list.length
+?list.map(p=>`<article class="product"><div class="photo">${p.image?`<img src="${p.image}" alt="${esc(p.name)}">`:'BOUSSAD CHIC'}</div><div class="pbody"><span class="badge">${esc(p.type)}</span><h3>${esc(p.name)}</h3><div class="muted">المقاسات: ${p.sizes.map(esc).join('، ')}</div><div class="price">${money(p.price)}</div><button class="gold" style="width:100%" onclick="chooseProduct('${p.id}')">اختيار المنتج</button></div></article>`).join('')
+:'<div class="empty">لا توجد منتجات في هذا القسم حالياً.</div>';
+}
+
+function filterProducts(f,b){
+activeFilter=f;
+document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+b.classList.add('active');
+renderProducts();
+}
+
+function chooseProduct(id){
+let p=data.products.find(x=>x.id===id);
+if(!p||p.stock<1)return alert('هذا المنتج غير متوفر حالياً');
+
+selectedProduct=p;
+document.getElementById('orderProductSummary').innerHTML=
+`<div class="cartline"><b>${esc(p.name)}</b><b>${money(p.price)}</b></div><div class="row"><div class="field"><label>اللون</label><select id="oColor">${p.colors.map(c=>`<option>${esc(c)}</option>`).join('')}</select></div><div class="field"><label>المقاس</label><select id="oSize">${p.sizes.map(s=>`<option>${esc(s)}</option>`).join('')}</select></div></div><div class="field"><label>الكمية</label><input id="oQty" type="number" min="1" max="${p.stock}" value="1"></div>`;
+
+document.getElementById('orderForm').dataset.mode='single';
+openModal('orderModal');
+updateDeliveryEstimate();
+}
+
+function openModal(id){document.getElementById(id).classList.add('show')}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+function openCart(){renderCart();openModal('cartModal')}
+
+function renderCart(){
+document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0);
+document.getElementById('cartItems').innerHTML=cart.length
+?cart.map((x,i)=>`<div class="cartline"><div><b>${esc(x.name)}</b><div class="small">${esc(x.color)} • ${esc(x.size)} • ${x.qty} قطعة</div></div><div>${money(x.price*x.qty)} <button class="danger" onclick="removeCart(${i})">حذف</button></div></div>`).join('')
+:'<div class="empty">سلتك فارغة.</div>';
+}
+
+function removeCart(i){cart.splice(i,1);renderCart()}
+
+function checkoutCart(){
+if(!cart.length)return alert('السلة فارغة');
+selectedProduct=null;
+document.getElementById('orderProductSummary').innerHTML=
+cart.map(x=>`<div class="cartline"><span>${esc(x.name)} — ${esc(x.color)} / ${esc(x.size)} × ${x.qty}</span><b>${money(x.price*x.qty)}</b></div>`).join('')+
+`<p><b>المجموع: ${money(cart.reduce((s,x)=>s+x.price*x.qty,0))}</b></p>`;
+document.getElementById('orderForm').dataset.mode='cart';
+closeModal('cartModal');
+openModal('orderModal');
+updateDeliveryEstimate();
+}
+
 document.getElementById('orderForm').onsubmit=e=>{
 e.preventDefault();
 
@@ -96,22 +500,370 @@ alert('رقم الهاتف غير صحيح! يرجى إدخال رقم جزائ�
 document.getElementById('cPhone').focus();
 return;
 }
+
 const submitButton=e.submitter;
 if(submitButton?.disabled)return;
 if(submitButton){
-  submitButton.disabled=true;
-  setTimeout(()=>{submitButton.disabled=false;},3000);
+submitButton.disabled=true;
+setTimeout(()=>{submitButton.disabled=false;},3000);
 }
-let items;if(e.target.dataset.mode==='single'){let q=Number(document.getElementById('oQty').value);if(q<1||q>selectedProduct.stock)return alert('الكمية المطلوبة غير متوفرة');items=[{id:selectedProduct.id,name:selectedProduct.name,price:selectedProduct.price,color:document.getElementById('oColor').value,size:document.getElementById('oSize').value,qty:q}]}else items=cart.map(x=>({...x}));for(let x of items){let p=data.products.find(p=>p.id===x.id);if(!p||p.stock<x.qty)return alert('الكمية لم تعد متوفرة للمنتج: '+x.name)}items.forEach(x=>{data.products.find(p=>p.id===x.id).stock-=x.qty});let wilaya=document.getElementById('cWilaya').value,deliveryType=document.getElementById('cDeliveryType').value,carrier=document.getElementById('cCarrier').value,configured=((data.shippingPrices||{})[carrier]||{})[wilaya]||{},fee=configured[deliveryType==='المنزل'?'home':'office'];let order={id:'BC-'+Date.now().toString().slice(-7),date:new Date().toLocaleString('ar-DZ'),customer:document.getElementById('cName').value,phone:document.getElementById('cPhone').value,address:document.getElementById('cAddress').value,deliveryType,carrier,wilaya,city:document.getElementById('cCity').value,note:document.getElementById('cNote').value,items,delivery:(fee===undefined||fee===null||fee==='')?null:Number(fee),status:'جديد'};data.orders.unshift(order);save();window.firebaseCreateOrder?.(order).catch(err=>console.error('Cloud order save failed',err));cart=[];renderCart();closeModal('orderModal');alert('تم تسجيل طلبك التجريبي بنجاح. رقم الطلب: '+order.id+' — سيتم تأكيد سعر التوصيل معك من الإدارة.');e.target.reset();renderProducts()};
+
+let items;
+
+if(e.target.dataset.mode==='single'){
+let q=Number(document.getElementById('oQty').value);
+if(q<1||q>selectedProduct.stock)return alert('الكمية المطلوبة غير متوفرة');
+items=[{
+id:selectedProduct.id,
+name:selectedProduct.name,
+price:selectedProduct.price,
+color:document.getElementById('oColor').value,
+size:document.getElementById('oSize').value,
+qty:q
+}];
+}else{
+items=cart.map(x=>({...x}));
+}
+
+for(let x of items){
+let p=data.products.find(p=>p.id===x.id);
+if(!p||p.stock<x.qty)return alert('الكمية لم تعد متوفرة للمنتج: '+x.name);
+}
+
+items.forEach(x=>{data.products.find(p=>p.id===x.id).stock-=x.qty});
+
+let wilaya=document.getElementById('cWilaya').value;
+let deliveryType=document.getElementById('cDeliveryType').value;
+let carrier=document.getElementById('cCarrier').value;
+let configured=((data.shippingPrices||{})[carrier]||{})[wilaya]||{};
+let fee=configured[deliveryType==='المنزل'?'home':'office'];
+
+let order={
+id:'BC-'+Date.now().toString().slice(-7),
+date:new Date().toLocaleString('ar-DZ'),
+customer:document.getElementById('cName').value,
+phone:document.getElementById('cPhone').value,
+address:document.getElementById('cAddress').value,
+deliveryType,
+carrier,
+wilaya,
+city:document.getElementById('cCity').value,
+note:document.getElementById('cNote').value,
+items,
+delivery:(fee===undefined||fee===null||fee==='')?null:Number(fee),
+status:'جديد'
+};
+
+data.orders.unshift(order);
+save();
+window.firebaseCreateOrder?.(order).catch(err=>console.error('Cloud order save failed',err));
+
+cart=[];
+renderCart();
+closeModal('orderModal');
+alert('تم تسجيل طلبك التجريبي بنجاح. رقم الطلب: '+order.id+' — سيتم تأكيد سعر التوصيل معك من الإدارة.');
+e.target.reset();
+renderProducts();
+};
+
 function openAdminLogin(){openModal('loginModal')}
+
 // دخول الإدارة من الهاتف: اضغط على شعار المتجر خمس مرات متتالية خلال 3 ثوانٍ.
-(()=>{const logo=document.getElementById('brandLogo');let taps=0,timer=null;const tap=()=>{taps++;clearTimeout(timer);timer=setTimeout(()=>{taps=0},3000);if(taps>=5){taps=0;clearTimeout(timer);openAdminLogin()}};logo.addEventListener('click',tap);logo.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tap()}})})();
-document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==='a'){e.preventDefault();openAdminLogin()}});document.getElementById('loginForm').onsubmit=async e=>{e.preventDefault();const btn=e.target.querySelector('button[type=submit],button:not([type])');if(btn)btn.disabled=true;try{await window.firebaseAdminLogin(document.getElementById('adminEmail').value.trim(),document.getElementById('adminPassword').value)}catch(err){alert('تعذر تسجيل الدخول: '+(err?.message||err))}finally{if(btn)btn.disabled=false}};function showShop(){document.getElementById('adminView').classList.add('hidden');document.getElementById('shopView').classList.remove('hidden')}function adminLogout(){window.firebaseAdminLogout?.();showShop();document.getElementById('adminEmail').value='';document.getElementById('adminPassword').value='';closeModal('loginModal')}
-function adminTab(t,b){document.querySelectorAll('.side button').forEach(x=>x.classList.remove('active'));b.classList.add('active');['overview','products','orders','shipping'].forEach(x=>document.getElementById('tab-'+x).classList.toggle('hidden',x!==t));renderAdmin();if(t==='shipping')renderShippingPrices()}function renderAdmin(){ document.getElementById('stats').innerHTML=`
+(()=>{
+const logo=document.getElementById('brandLogo');
+let taps=0,timer=null;
+const tap=()=>{
+taps++;
+clearTimeout(timer);
+timer=setTimeout(()=>{taps=0},3000);
+if(taps>=5){
+taps=0;
+clearTimeout(timer);
+openAdminLogin();
+}
+};
+logo.addEventListener('click',tap);
+logo.addEventListener('keydown',e=>{
+if(e.key==='Enter'||e.key===' '){
+e.preventDefault();
+tap();
+}
+});
+})();
+
+document.addEventListener('keydown',e=>{
+if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==='a'){
+e.preventDefault();
+openAdminLogin();
+}
+});
+
+document.getElementById('loginForm').onsubmit=async e=>{
+e.preventDefault();
+const btn=e.target.querySelector('button[type=submit],button:not([type])');
+if(btn)btn.disabled=true;
+try{
+await window.firebaseAdminLogin(
+document.getElementById('adminEmail').value.trim(),
+document.getElementById('adminPassword').value
+);
+}catch(err){
+alert('تعذر تسجيل الدخول: '+(err?.message||err));
+}finally{
+if(btn)btn.disabled=false;
+}
+};
+
+function showShop(){
+document.getElementById('adminView').classList.add('hidden');
+document.getElementById('shopView').classList.remove('hidden');
+}
+
+function adminLogout(){
+window.firebaseAdminLogout?.();
+showShop();
+document.getElementById('adminEmail').value='';
+document.getElementById('adminPassword').value='';
+closeModal('loginModal');
+}
+  // تحويل تاريخ الطلب إلى الشهر والسنة حسب توقيت الجزائر
+function getOrderMonth(order){
+const raw=order.createdAt||order.date;
+if(!raw)return null;
+
+const d=new Date(raw);
+if(Number.isNaN(d.getTime()))return null;
+
+const parts=new Intl.DateTimeFormat('en-CA',{
+timeZone:'Africa/Algiers',
+year:'numeric',
+month:'2-digit'
+}).formatToParts(d);
+
+const year=parts.find(p=>p.type==='year')?.value;
+const month=parts.find(p=>p.type==='month')?.value;
+
+return year&&month?`${year}-${month}`:null;
+}
+
+// الشهر الحالي حسب توقيت الجزائر
+function currentAlgeriaMonth(){
+const parts=new Intl.DateTimeFormat('en-CA',{
+timeZone:'Africa/Algiers',
+year:'numeric',
+month:'2-digit'
+}).formatToParts(new Date());
+
+return `${parts.find(p=>p.type==='year').value}-${parts.find(p=>p.type==='month').value}`;
+}
+
+// حساب قيمة المنتجات فقط، دون التوصيل
+function orderProductsTotal(order){
+return (order.items||[]).reduce((sum,item)=>{
+return sum+(Number(item.price)||0)*(Number(item.qty)||0);
+},0);
+}
+
+// تهيئة اختيار الشهر
+function initMonthlyPicker(){
+const picker=document.getElementById('monthlyPicker');
+if(!picker)return;
+
+if(!picker.value){
+picker.value=currentAlgeriaMonth();
+}
+
+picker.max=currentAlgeriaMonth();
+picker.addEventListener('change',updateMonthlyAnalysis);
+}
+
+// إنشاء أسماء آخر ستة أشهر حتى الشهر المختار
+function getLastSixMonths(endMonth){
+const [year,month]=endMonth.split('-').map(Number);
+const end=new Date(year,month-1,1);
+const months=[];
+
+for(let i=5;i>=0;i--){
+const d=new Date(end.getFullYear(),end.getMonth()-i,1);
+months.push(
+`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`
+);
+}
+
+return months;
+}
+
+// رسم بياني باستخدام Canvas دون مكتبات خارجية
+function drawMonthlyChart(months,values){
+const canvas=document.getElementById('monthlyChart');
+if(!canvas)return;
+
+const rect=canvas.getBoundingClientRect();
+const width=Math.max(rect.width,280);
+const height=260;
+const ratio=window.devicePixelRatio||1;
+
+canvas.width=width*ratio;
+canvas.height=height*ratio;
+
+const ctx=canvas.getContext('2d');
+ctx.setTransform(ratio,0,0,ratio,0,0);
+ctx.clearRect(0,0,width,height);
+
+const styles=getComputedStyle(document.body);
+const textColor=styles.color;
+const mutedColor=styles.getPropertyValue('--muted').trim()||'#999';
+const goldColor=styles.getPropertyValue('--gold').trim()||'#c9a96e';
+
+const padding={
+top:20,
+right:18,
+bottom:48,
+left:18
+};
+
+const chartWidth=width-padding.left-padding.right;
+const chartHeight=height-padding.top-padding.bottom;
+const maxValue=Math.max(...values,1);
+const step=maxValue/4;
+
+ctx.font='11px Arial';
+ctx.textAlign='center';
+ctx.textBaseline='middle';
+
+// خطوط الرسم والقيم
+for(let i=0;i<=4;i++){
+const y=padding.top+chartHeight-(chartHeight*i/4);
+
+ctx.beginPath();
+ctx.strokeStyle=mutedColor;
+ctx.globalAlpha=.22;
+ctx.moveTo(padding.left,y);
+ctx.lineTo(width-padding.right,y);
+ctx.stroke();
+ctx.globalAlpha=1;
+
+ctx.fillStyle=mutedColor;
+ctx.textAlign='left';
+ctx.fillText(
+Math.round(step*i).toLocaleString('fr-DZ'),
+padding.left+2,
+y-9
+);
+}
+
+// الأعمدة
+const gap=12;
+const barWidth=Math.min(42,(chartWidth-gap*5)/6);
+
+months.forEach((month,index)=>{
+const value=values[index];
+const x=padding.left+index*(chartWidth/6)+(chartWidth/6-barWidth)/2;
+const barHeight=(value/maxValue)*chartHeight;
+const y=padding.top+chartHeight-barHeight;
+
+ctx.fillStyle=goldColor;
+ctx.globalAlpha=.85;
+ctx.fillRect(x,y,barWidth,barHeight);
+ctx.globalAlpha=1;
+
+ctx.fillStyle=textColor;
+ctx.textAlign='center';
+ctx.font='10px Arial';
+
+const label=month.slice(5)+'/'+month.slice(0,4);
+ctx.fillText(label,x+barWidth/2,height-23);
+});
+
+if(values.every(v=>v===0)){
+ctx.fillStyle=mutedColor;
+ctx.textAlign='center';
+ctx.font='13px Arial';
+ctx.fillText('لا توجد مداخيل مسجلة في هذه الفترة',width/2,height/2);
+}
+}
+
+// تحديث إحصائيات الشهر والرسم البياني
+function updateMonthlyAnalysis(){
+const picker=document.getElementById('monthlyPicker');
+const stats=document.getElementById('monthlyStats');
+
+if(!picker||!stats)return;
+
+const selectedMonth=picker.value||currentAlgeriaMonth();
+
+const monthOrders=data.orders.filter(order=>{
+return getOrderMonth(order)===selectedMonth;
+});
+
+const delivered=monthOrders.filter(order=>order.status==='تم التسليم');
+
+const revenue=delivered.reduce((sum,order)=>{
+return sum+orderProductsTotal(order);
+},0);
+
+stats.innerHTML=`
+<div class="stat">
+عدد الطلبات في الشهر
+<b>${monthOrders.length}</b>
+</div>
+<div class="stat">
+المدخول المحقق من المنتجات
+<b>${money(revenue)}</b>
+</div>
+`;
+
+const months=getLastSixMonths(selectedMonth);
+
+const values=months.map(month=>{
+return data.orders
+.filter(order=>order.status==='تم التسليم'&&getOrderMonth(order)===month)
+.reduce((sum,order)=>sum+orderProductsTotal(order),0);
+});
+
+drawMonthlyChart(months,values);
+}
+
+function adminTab(t,b){
+document.querySelectorAll('.side button').forEach(x=>x.classList.remove('active'));
+b.classList.add('active');
+
+['monthly','overview','products','orders','shipping'].forEach(x=>{
+document.getElementById('tab-'+x).classList.toggle('hidden',x!==t);
+});
+
+renderAdmin();
+
+if(t==='shipping')renderShippingPrices();
+if(t==='monthly')updateMonthlyAnalysis();
+}
+
+function renderAdmin(){
+document.getElementById('stats').innerHTML=`
 <div class="stat">المنتجات<b>${data.products.length}</b></div>
 <div class="stat">الطلبات<b>${data.orders.length}</b></div>
-<div class="stat">المدخول المحقق<b>${money(data.orders.filter(o=>o.status==='تم التسليم').reduce((s,o)=>s+o.items.reduce((a,x)=>a+x.price*x.qty,0),0))}</b></div>
-`; document.getElementById('recentOrders').innerHTML=data.orders.filter(o=>o.status==='جديد').slice(0,5).map(orderRow).join('')||'<div class="empty">لا توجد طلبات جديدة.</div>'; document.getElementById('adminProducts').innerHTML=data.products.map(p=>`<div class="cartline"><div><b>${esc(p.name)}</b><div class="small">${esc(p.type)} • ${money(p.price)} • المخزون: ${p.stock}</div></div><div class="actions"><button class="ghost" onclick="editProduct('${p.id}')">تعديل</button><button class="danger" onclick="deleteProduct('${p.id}')">حذف</button></div></div>`).join('')||'<div class="empty">لا توجد منتجات.</div>'; const activeOrders=data.orders.filter(o=>o.status!=='تم التسليم'&&o.status!=='ملغي');
+<div class="stat">المدخول المحقق<b>${money(data.orders.filter(o=>o.status==='تم التسليم').reduce((s,o)=>s+orderProductsTotal(o),0))}</b></div>
+`;
+
+document.getElementById('recentOrders').innerHTML=
+data.orders.filter(o=>o.status==='جديد').slice(0,5).map(orderRow).join('')
+||'<div class="empty">لا توجد طلبات جديدة.</div>';
+
+document.getElementById('adminProducts').innerHTML=
+data.products.map(p=>`
+<div class="cartline">
+<div>
+<b>${esc(p.name)}</b>
+<div class="small">${esc(p.type)} • ${money(p.price)} • المخزون: ${p.stock}</div>
+</div>
+<div class="actions">
+<button class="ghost" onclick="editProduct('${p.id}')">تعديل</button>
+<button class="danger" onclick="deleteProduct('${p.id}')">حذف</button>
+</div>
+</div>
+`).join('')||'<div class="empty">لا توجد منتجات.</div>';
+
+const activeOrders=data.orders.filter(o=>o.status!=='تم التسليم'&&o.status!=='ملغي');
 const deliveredOrders=data.orders.filter(o=>o.status==='تم التسليم');
 const cancelledOrders=data.orders.filter(o=>o.status==='ملغي');
 
@@ -126,47 +878,205 @@ ${deliveredOrders.map(orderRow).join('')||'<div class="empty">لا توجد طل
 <hr>
 <h3>الطلبات الملغاة (${cancelledOrders.length})</h3>
 ${cancelledOrders.map(orderRow).join('')||'<div class="empty">لا توجد طلبات ملغاة.</div>'}
-`; renderShippingPrices()}function orderRow(o){return `<div class="cartline" style="display:block"><div class="admin-top"><b>${esc(o.id)} — ${esc(o.customer)}</b><span class="badge">${esc(o.status)}</span> </div><div class="small">تاريخ الطلب: <b>${o.createdAt?new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Algiers',day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date(o.createdAt)):'غير متوفر'}</b> • الساعة: <b>${o.createdAt?new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Algiers',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(o.createdAt)):'غير متوفر'}</b></div><div class="small">${esc(o.phone)} • ${esc(o.wilaya)} / ${esc(o.city)} • ${esc(o.address)}</div><div class="small">شركة التوصيل: <b>${esc(o.carrier||'غير محددة')}</b> — طريقة التوصيل: <b>${esc(o.deliveryType||'غير محدد')}</b> — ${o.deliveryType==='المنزل'?'توصيل إلى المنزل':o.deliveryType==='المكتب'?'توصيل إلى المكتب':'نوع التوصيل غير محدد'}</div><div class="small">${o.items.map(x=>`${esc(x.name)} (${esc(x.color)}, ${esc(x.size)}) × ${x.qty}`).join(' | ')}</div><div class="small">المنتجات: ${money(o.items.reduce((s,x)=>s+x.price*x.qty,0))} • التوصيل: ${o.delivery==null?'لم يحدد بعد':money(o.delivery)} • الإجمالي: ${money(o.items.reduce((s,x)=>s+x.price*x.qty,0)+(o.delivery||0))}</div><div class="actions" style="margin-top:9px"><label class="small" for="d-${o.id}">سعر توصيل ${esc(o.carrier||'')} / ${o.deliveryType==='المكتب'?'المكتب':'المنزل'} (دج)</label><input class="qty" type="number" min="0" placeholder="السعر بالدج" id="d-${o.id}" value="${o.delivery??''}"><button type="button" class="ghost" onclick="setDelivery('${o.id}')">حفظ سعر التوصيل</button><select id="s-${o.id}" style="max-width:150px;background:#111;color:white;border:1px solid #444;border-radius:9px"><option>جديد</option><option>قيد المعالجة</option><option>تم الشحن</option><option>تم التسليم</option><option>ملغي</option></select><button class="ghost" onclick="setStatus('${o.id}')">تحديث الحالة</button></div></div>`}function setDelivery(id){const o=data.orders.find(x=>x.id===id),input=document.getElementById('d-'+id);if(!o||!input)return alert('لم يتم العثور على الطلب. حدّث الصفحة وحاول مجدداً.');const raw=input.value.trim();if(raw==='')return alert('أدخل سعر التوصيل بالدينار الجزائري أولاً.');const v=Number(raw);if(!Number.isFinite(v)||v<0)return alert('أدخل سعراً صحيحاً غير سالب.');o.delivery=Math.round(v);if(save()){renderAdmin();alert('تم حفظ سعر التوصيل بنجاح: '+money(o.delivery));}} async function setStatus(id){
-  let o=data.orders.find(x=>x.id===id);
-  if(!o)return alert('لم يتم العثور على الطلب.');
+`;
 
-  const newStatus=document.getElementById('s-'+id).value;
-
-  try{
-    await window.firebaseUpdateOrderStatus(id,newStatus);
-    o.status=newStatus;
-    save();
-    renderAdmin();
-    alert('تم تحديث حالة الطلب بنجاح.');
-  }catch(err){
-    console.error(err);
-    alert('تعذر تحديث حالة الطلب في Firebase. حاول مرة أخرى.');
-  }
-} function openProductForm(){document.getElementById('productForm').reset();document.getElementById('editId').value='';document.getElementById('productFormTitle').textContent='إضافة منتج';openModal('productModal')}function editProduct(id){let p=data.products.find(x=>x.id===id);document.getElementById('editId').value=id;document.getElementById('pName').value=p.name;document.getElementById('pType').value=p.type;document.getElementById('pPrice').value=p.price;document.getElementById('pStock').value=p.stock;document.getElementById('pSizes').value=p.sizes.join(', ');document.getElementById('pColors').value=p.colors.join(', ');document.getElementById('productFormTitle').textContent='تعديل المنتج';openModal('productModal')}function deleteProduct(id){if(confirm('هل تريد حذف هذا المنتج؟')){data.products=data.products.filter(p=>p.id!==id);save();renderAdmin()}}document.getElementById('productForm').onsubmit=async e=>{e.preventDefault();let id=document.getElementById('editId').value,old=data.products.find(p=>p.id===id),file=document.getElementById('pImage').files[0],image=old?.image||'';if(file)image=await new Promise(resolve=>{let r=new FileReader();r.onload=()=>resolve(r.result);r.readAsDataURL(file)});let p={id:id||'p'+Date.now(),name:document.getElementById('pName').value,type:document.getElementById('pType').value,price:Number(document.getElementById('pPrice').value),stock:Number(document.getElementById('pStock').value),sizes:document.getElementById('pSizes').value.split(',').map(x=>x.trim()).filter(Boolean),colors:document.getElementById('pColors').value.split(',').map(x=>x.trim()).filter(Boolean),image};if(old)data.products=data.products.map(x=>x.id===id?p:x);else data.products.unshift(p);save();closeModal('productModal');renderAdmin();renderProducts()};renderProducts();renderCart();window.getStoreData=()=>data;window.replaceStoreData=(next)=>{data={...data,...next};localStorage.setItem(KEY,JSON.stringify(data));refreshCarrierSelects();renderProducts();};window.mergeCloudOrders=(orders)=>{data.orders=orders;localStorage.setItem(KEY,JSON.stringify(data));renderAdmin();};
-function applyTheme(theme) {
-  document.body.classList.toggle('light-mode', theme === 'light');
-
-  const btn = document.getElementById('themeToggle');
-  if (btn) {
-    btn.textContent = theme === 'light'
-      ? '🌙 الوضع الداكن'
-      : '☀️ الوضع الفاتح';
-  }
-
-  localStorage.setItem('boussadTheme', theme);
+renderShippingPrices();
+updateMonthlyAnalysis();
 }
 
-function toggleTheme() {
-  const isLight = document.body.classList.contains('light-mode');
-  applyTheme(isLight ? 'dark' : 'light');
+function orderRow(o){
+return `<div class="cartline" style="display:block">
+<div class="admin-top">
+<b>${esc(o.id)} — ${esc(o.customer)}</b>
+<span class="badge">${esc(o.status)}</span>
+</div>
+<div class="small">
+تاريخ الطلب:
+<b>${o.createdAt?new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Algiers',day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date(o.createdAt)):'غير متوفر'}</b>
+•
+الساعة:
+<b>${o.createdAt?new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Algiers',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(o.createdAt)):'غير متوفر'}</b>
+</div>
+<div class="small">${esc(o.phone)} • ${esc(o.wilaya)} / ${esc(o.city)} • ${esc(o.address)}</div>
+<div class="small">
+شركة التوصيل: <b>${esc(o.carrier||'غير محددة')}</b>
+— طريقة التوصيل: <b>${esc(o.deliveryType||'غير محدد')}</b>
+— ${o.deliveryType==='المنزل'?'توصيل إلى المنزل':o.deliveryType==='المكتب'?'توصيل إلى المكتب':'نوع التوصيل غير محدد'}
+</div>
+<div class="small">
+${(o.items||[]).map(x=>`${esc(x.name)} (${esc(x.color)}, ${esc(x.size)}) × ${x.qty}`).join(' | ')}
+</div>
+<div class="small">
+المنتجات: ${money(orderProductsTotal(o))}
+• التوصيل: ${o.delivery==null?'لم يحدد بعد':money(o.delivery)}
+• الإجمالي: ${money(orderProductsTotal(o)+(o.delivery||0))}
+</div>
+<div class="actions" style="margin-top:9px">
+<label class="small" for="d-${o.id}">سعر توصيل ${esc(o.carrier||'')} / ${o.deliveryType==='المكتب'?'المكتب':'المنزل'} (دج)</label>
+<input class="qty" type="number" min="0" placeholder="السعر بالدج" id="d-${o.id}" value="${o.delivery??''}">
+<button type="button" class="ghost" onclick="setDelivery('${o.id}')">حفظ سعر التوصيل</button>
+<select id="s-${o.id}" style="max-width:150px;background:#111;color:white;border:1px solid #444;border-radius:9px">
+<option>جديد</option>
+<option>قيد المعالجة</option>
+<option>تم الشحن</option>
+<option>تم التسليم</option>
+<option>ملغي</option>
+</select>
+<button class="ghost" onclick="setStatus('${o.id}')">تحديث الحالة</button>
+</div>
+</div>`;
 }
 
-applyTheme(localStorage.getItem('boussadTheme') || 'dark');
+function setDelivery(id){
+const o=data.orders.find(x=>x.id===id);
+const input=document.getElementById('d-'+id);
+
+if(!o||!input)return alert('لم يتم العثور على الطلب. حدّث الصفحة وحاول مجدداً.');
+
+const raw=input.value.trim();
+if(raw==='')return alert('أدخل سعر التوصيل بالدينار الجزائري أولاً.');
+
+const v=Number(raw);
+if(!Number.isFinite(v)||v<0)return alert('أدخل سعراً صحيحاً غير سالب.');
+
+o.delivery=Math.round(v);
+
+if(save()){
+renderAdmin();
+alert('تم حفظ سعر التوصيل بنجاح: '+money(o.delivery));
+}
+}
+
+async function setStatus(id){
+let o=data.orders.find(x=>x.id===id);
+if(!o)return alert('لم يتم العثور على الطلب.');
+
+const newStatus=document.getElementById('s-'+id).value;
+
+try{
+await window.firebaseUpdateOrderStatus(id,newStatus);
+o.status=newStatus;
+save();
+renderAdmin();
+alert('تم تحديث حالة الطلب بنجاح.');
+}catch(err){
+console.error(err);
+alert('تعذر تحديث حالة الطلب في Firebase. حاول مرة أخرى.');
+}
+}
+  function openProductForm(){
+document.getElementById('productForm').reset();
+document.getElementById('editId').value='';
+document.getElementById('productFormTitle').textContent='إضافة منتج';
+openModal('productModal');
+}
+
+function editProduct(id){
+let p=data.products.find(x=>x.id===id);
+document.getElementById('editId').value=id;
+document.getElementById('pName').value=p.name;
+document.getElementById('pType').value=p.type;
+document.getElementById('pPrice').value=p.price;
+document.getElementById('pStock').value=p.stock;
+document.getElementById('pSizes').value=p.sizes.join(', ');
+document.getElementById('pColors').value=p.colors.join(', ');
+document.getElementById('productFormTitle').textContent='تعديل المنتج';
+openModal('productModal');
+}
+
+function deleteProduct(id){
+if(confirm('هل تريد حذف هذا المنتج؟')){
+data.products=data.products.filter(p=>p.id!==id);
+save();
+renderAdmin();
+}
+}
+
+document.getElementById('productForm').onsubmit=async e=>{
+e.preventDefault();
+
+let id=document.getElementById('editId').value;
+let old=data.products.find(p=>p.id===id);
+let file=document.getElementById('pImage').files[0];
+let image=old?.image||'';
+
+if(file){
+image=await new Promise(resolve=>{
+let r=new FileReader();
+r.onload=()=>resolve(r.result);
+r.readAsDataURL(file);
+});
+}
+
+let p={
+id:id||'p'+Date.now(),
+name:document.getElementById('pName').value,
+type:document.getElementById('pType').value,
+price:Number(document.getElementById('pPrice').value),
+stock:Number(document.getElementById('pStock').value),
+sizes:document.getElementById('pSizes').value.split(',').map(x=>x.trim()).filter(Boolean),
+colors:document.getElementById('pColors').value.split(',').map(x=>x.trim()).filter(Boolean),
+image
+};
+
+if(old)data.products=data.products.map(x=>x.id===id?p:x);
+else data.products.unshift(p);
+
+save();
+closeModal('productModal');
+renderAdmin();
+renderProducts();
+};
+
+renderProducts();
+renderCart();
+
+window.getStoreData=()=>data;
+
+window.replaceStoreData=(next)=>{
+data={...data,...next};
+localStorage.setItem(KEY,JSON.stringify(data));
+refreshCarrierSelects();
+renderProducts();
+};
+
+window.mergeCloudOrders=(orders)=>{
+data.orders=orders;
+localStorage.setItem(KEY,JSON.stringify(data));
+renderAdmin();
+};
+
+// إعداد اختيار الشهر بعد تجهيز عناصر الصفحة
+initMonthlyPicker();
+
+function applyTheme(theme){
+document.body.classList.toggle('light-mode',theme==='light');
+
+const btn=document.getElementById('themeToggle');
+
+if(btn){
+btn.textContent=theme==='light'
+?'🌙 الوضع الداكن'
+:'☀️ الوضع الفاتح';
+}
+
+localStorage.setItem('boussadTheme',theme);
+}
+
+function toggleTheme(){
+const isLight=document.body.classList.contains('light-mode');
+applyTheme(isLight?'dark':'light');
+}
+
+applyTheme(localStorage.getItem('boussadTheme')||'dark');
+
 </script>
+
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, addDoc, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
 const firebaseConfig = {
   apiKey: "AIzaSyD0k5FVF7mRpcwjhtuAM7ypnlWIbeTxnrE",
   authDomain: "boussad-chic.firebaseapp.com",
@@ -176,21 +1086,120 @@ const firebaseConfig = {
   appId: "1:620144130645:web:34817fc4c080749db1b2dc",
   measurementId: "G-9R0XWMFY74"
 };
+
 const ADMIN_UID = 'N0FGcJ2tIzcOu8GpQNidQFdqdGe2';
-const app = initializeApp(firebaseConfig), auth = getAuth(app), db = getFirestore(app);
-  window.firebaseUpdateOrderStatus=async(id,status)=>{
-  await updateDoc(doc(db,'orders',id),{status});
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.firebaseUpdateOrderStatus=async(id,status)=>{
+await updateDoc(doc(db,'orders',id),{status});
 };
-const status = (msg)=>{const el=document.getElementById('cloudStatus');if(el)el.textContent=msg};
-const waitForApp=()=>new Promise(resolve=>{const tick=()=>{if(window.getStoreData)resolve();else setTimeout(tick,50)};tick()});
+
+const status=(msg)=>{
+const el=document.getElementById('cloudStatus');
+if(el)el.textContent=msg;
+};
+
+const waitForApp=()=>new Promise(resolve=>{
+const tick=()=>{
+if(window.getStoreData)resolve();
+else setTimeout(tick,50);
+};
+tick();
+});
+
 await waitForApp();
-// Bridge to the classic storefront script without exposing privileged credentials.
-window.queueCloudSave=()=>{ if(auth.currentUser?.uid===ADMIN_UID) saveStoreConfig().catch(e=>{console.error(e);status('تعذر حفظ التغييرات في Firebase. تحقق من قواعد Firestore والاتصال.')}); };
-async function saveStoreConfig(){const d=window.getStoreData();await setDoc(doc(db,'store','public'),{products:d.products||[],shippingCarriers:d.shippingCarriers||[],shippingPrices:d.shippingPrices||[],updatedAt:new Date().toISOString()});}
-async function loadStoreConfig(){const snap=await getDoc(doc(db,'store','public'));if(snap.exists()){const remote=snap.data();const local=window.getStoreData();window.replaceStoreData({...local,...remote,orders:local.orders||[]});}}
-async function loadOrders(){const snap=await getDocs(query(collection(db,'orders'),orderBy('createdAt','desc')));const orders=snap.docs.map(x=>({id:x.id,...x.data()}));window.mergeCloudOrders(orders);}
-window.firebaseAdminLogin=async(email,password)=>{const cred=await signInWithEmailAndPassword(auth,email,password);if(cred.user.uid!==ADMIN_UID){await signOut(auth);throw new Error('هذا الحساب ليس حساب المدير المصرح به.')}await loadOrders();closeModal('loginModal');document.getElementById('shopView').classList.add('hidden');document.getElementById('adminView').classList.remove('hidden');renderAdmin();status('متصل بـ Firebase — تم التحقق من حساب المدير.');};
+
+// ربط حفظ بيانات المتجر مع Firebase
+window.queueCloudSave=()=>{
+if(auth.currentUser?.uid===ADMIN_UID){
+saveStoreConfig().catch(e=>{
+console.error(e);
+status('تعذر حفظ التغييرات في Firebase. تحقق من قواعد Firestore والاتصال.');
+});
+}
+};
+
+async function saveStoreConfig(){
+const d=window.getStoreData();
+
+await setDoc(doc(db,'store','public'),{
+products:d.products||[],
+shippingCarriers:d.shippingCarriers||[],
+shippingPrices:d.shippingPrices||{},
+updatedAt:new Date().toISOString()
+});
+}
+
+async function loadStoreConfig(){
+const snap=await getDoc(doc(db,'store','public'));
+
+if(snap.exists()){
+const remote=snap.data();
+const local=window.getStoreData();
+
+window.replaceStoreData({
+...local,
+...remote,
+orders:local.orders||[]
+});
+}
+}
+
+async function loadOrders(){
+const snap=await getDocs(
+query(collection(db,'orders'),orderBy('createdAt','desc'))
+);
+
+const orders=snap.docs.map(x=>({id:x.id,...x.data()}));
+window.mergeCloudOrders(orders);
+}
+
+window.firebaseAdminLogin=async(email,password)=>{
+const cred=await signInWithEmailAndPassword(auth,email,password);
+
+if(cred.user.uid!==ADMIN_UID){
+await signOut(auth);
+throw new Error('هذا الحساب ليس حساب المدير المصرح به.');
+}
+
+await loadOrders();
+
+closeModal('loginModal');
+document.getElementById('shopView').classList.add('hidden');
+document.getElementById('adminView').classList.remove('hidden');
+
+renderAdmin();
+status('متصل بـ Firebase — تم التحقق من حساب المدير.');
+};
+
 window.firebaseAdminLogout=()=>signOut(auth);
-window.firebaseCreateOrder=async(order)=>{const payload={...order,createdAt:new Date().toISOString()};delete payload.id;await addDoc(collection(db,'orders'),payload);};
-onAuthStateChanged(auth,async user=>{try{await loadStoreConfig();if(user?.uid===ADMIN_UID){await loadOrders();status('متصل بـ Firebase — حساب المدير موثّق.')}else status('المتجر متصل بـ Firebase. الطلبات تحفظ سحابياً، ولوحة الإدارة تتطلب حساب المدير.');}catch(e){console.error(e);status('تعذر تحميل بيانات Firebase. راجع قواعد Firestore واتصال الإنترنت.');}});
-</script></body></html>
+
+window.firebaseCreateOrder=async(order)=>{
+const payload={...order,createdAt:new Date().toISOString()};
+delete payload.id;
+await addDoc(collection(db,'orders'),payload);
+};
+
+onAuthStateChanged(auth,async user=>{
+try{
+await loadStoreConfig();
+
+if(user?.uid===ADMIN_UID){
+await loadOrders();
+status('متصل بـ Firebase — حساب المدير موثّق.');
+}else{
+status('المتجر متصل بـ Firebase. الطلبات تحفظ سحابياً، ولوحة الإدارة تتطلب حساب المدير.');
+}
+}catch(e){
+console.error(e);
+status('تعذر تحميل بيانات Firebase. راجع قواعد Firestore واتصال الإنترنت.');
+}
+});
+
+</script>
+</body>
+</html>
+  
