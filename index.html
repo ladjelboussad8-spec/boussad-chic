@@ -143,6 +143,25 @@ ${cancelledOrders.map(orderRow).join('')||'<div class="empty">لا توجد طل
     alert('تعذر تحديث حالة الطلب في Firebase. حاول مرة أخرى.');
   }
 } function openProductForm(){document.getElementById('productForm').reset();document.getElementById('editId').value='';document.getElementById('productFormTitle').textContent='إضافة منتج';openModal('productModal')}function editProduct(id){let p=data.products.find(x=>x.id===id);document.getElementById('editId').value=id;document.getElementById('pName').value=p.name;document.getElementById('pType').value=p.type;document.getElementById('pPrice').value=p.price;document.getElementById('pStock').value=p.stock;document.getElementById('pSizes').value=p.sizes.join(', ');document.getElementById('pColors').value=p.colors.join(', ');document.getElementById('productFormTitle').textContent='تعديل المنتج';openModal('productModal')}function deleteProduct(id){if(confirm('هل تريد حذف هذا المنتج؟')){data.products=data.products.filter(p=>p.id!==id);save();renderAdmin()}}document.getElementById('productForm').onsubmit=async e=>{e.preventDefault();let id=document.getElementById('editId').value,old=data.products.find(p=>p.id===id),file=document.getElementById('pImage').files[0],image=old?.image||'';if(file)image=await new Promise(resolve=>{let r=new FileReader();r.onload=()=>resolve(r.result);r.readAsDataURL(file)});let p={id:id||'p'+Date.now(),name:document.getElementById('pName').value,type:document.getElementById('pType').value,price:Number(document.getElementById('pPrice').value),stock:Number(document.getElementById('pStock').value),sizes:document.getElementById('pSizes').value.split(',').map(x=>x.trim()).filter(Boolean),colors:document.getElementById('pColors').value.split(',').map(x=>x.trim()).filter(Boolean),image};if(old)data.products=data.products.map(x=>x.id===id?p:x);else data.products.unshift(p);save();closeModal('productModal');renderAdmin();renderProducts()};renderProducts();renderCart();window.getStoreData=()=>data;window.replaceStoreData=(next)=>{data={...data,...next};localStorage.setItem(KEY,JSON.stringify(data));refreshCarrierSelects();renderProducts();};window.mergeCloudOrders=(orders)=>{data.orders=orders;localStorage.setItem(KEY,JSON.stringify(data));renderAdmin();};
+function applyTheme(theme) {
+  document.body.classList.toggle('light-mode', theme === 'light');
+
+  const btn = document.getElementById('themeToggle');
+  if (btn) {
+    btn.textContent = theme === 'light'
+      ? '🌙 الوضع الداكن'
+      : '☀️ الوضع الفاتح';
+  }
+
+  localStorage.setItem('boussadTheme', theme);
+}
+
+function toggleTheme() {
+  const isLight = document.body.classList.contains('light-mode');
+  applyTheme(isLight ? 'dark' : 'light');
+}
+
+applyTheme(localStorage.getItem('boussadTheme') || 'dark');
 </script>
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
