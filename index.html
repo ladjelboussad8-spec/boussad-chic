@@ -937,8 +937,9 @@ ${(o.items||[]).map(x=>`${esc(x.name)} (${esc(x.color)}, ${esc(x.size)}) × ${x.
 if(compact){
 return `
 <details class="cartline" style="display:block">
-<summary style="cursor:pointer;padding:8px;font-weight:bold">
-${esc(o.id)}
+<summary style="cursor:pointer;padding:12px;font-weight:bold;list-style:none;display:flex;justify-content:space-between;align-items:center">
+<span>رقم الطلب: ${esc(o.id)}</span>
+<span class="order-arrow">⌄</span>
 </summary>
 <div style="padding-top:10px">${content}</div>
 </details>`;
