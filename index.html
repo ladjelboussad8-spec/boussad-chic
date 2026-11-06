@@ -873,7 +873,7 @@ ${activeOrders.map(o=>orderRow(o,true)).join('')||'<div class="empty">لا تو�
 
 <hr>
 <h3>الطلبات المسلّمة (${deliveredOrders.length})</h3>
-${deliveredOrders.map(orderRow).join('')||'<div class="empty">لا توجد طلبات مسلّمة.</div>'}
+${deliveredOrders.map(o=>orderRow(o,true)).join('')||'<div class="empty">لا توجد طلبات مسلّمة.</div>'}
 
 <hr>
 <h3>الطلبات الملغاة (${cancelledOrders.length})</h3>
