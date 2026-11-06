@@ -884,8 +884,9 @@ renderShippingPrices();
 updateMonthlyAnalysis();
 }
 
-function orderRow(o){
-return `<div class="cartline" style="display:block">
+
+function orderRow(o, compact=false){
+const content=`
 <div class="admin-top">
 <b>${esc(o.id)} — ${esc(o.customer)}</b>
 <span class="badge">${esc(o.status)}</span>
@@ -924,8 +925,21 @@ ${(o.items||[]).map(x=>`${esc(x.name)} (${esc(x.color)}, ${esc(x.size)}) × ${x.
 </select>
 <button class="ghost" onclick="setStatus('${o.id}')">تحديث الحالة</button>
 </div>
-</div>`;
+`;
+
+if(compact){
+return `
+<details class="cartline" style="display:block">
+<summary style="cursor:pointer;padding:8px;font-weight:bold">
+${esc(o.id)}
+</summary>
+<div style="padding-top:10px">${content}</div>
+</details>`;
 }
+
+return `<div class="cartline" style="display:block">${content}</div>`;
+}
+
 
 function setDelivery(id){
 const o=data.orders.find(x=>x.id===id);
