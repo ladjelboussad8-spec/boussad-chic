@@ -515,7 +515,7 @@ function openCart(){renderCart();openModal('cartModal')}
 function renderCart(){
 document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0);
 document.getElementById('cartItems').innerHTML=cart.length
-?cart.map((x,i)=>`<div class="cartline"><div><b>${esc(x.name)}</b><div class="small">${esc(x.color)} • ${esc(x.size)} • ${x.qty} قطعة</div></div><div>${money(x.price*x.qty)} <button class="danger" onclick="removeCart(${i})">حذف</button></div></div>`).join('')
+?cart.map((x,i)=>`<div class="cartline"><div><b>${esc(x.name)}</b><div class="small">${esc(x.color)} • ${esc(x.size)} • ${x.qty} قطعة</div></div><div>${money(getProductUnitPrice(x,x.qty)*x.qty)} <button class="danger" onclick="removeCart(${i})">حذف</button></div></div>`).join('')
 :'<div class="empty">سلتك فارغة.</div>';
 }
 
