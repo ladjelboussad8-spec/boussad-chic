@@ -973,10 +973,12 @@ updateMonthlyAnalysis();
 }
 async function updateVisitorStats() {
   try {
-    const snap = await getDocsFromServer(collection(db, 'visits'));
-console.log('عدد سجلات الزيارات:', snap.size);
-console.log('بيانات الزيارات:', snap.docs.map(d => d.data()));
-    const visits = snap.docs.map(d => d.data());
+    const visits = await window.firebaseGetVisits();
+
+console.log('عدد سجلات الزيارات:', visits.length);
+console.log('بيانات الزيارات:', visits);
+
+alert('عدد الزيارات التي قرأتها لوحة الإدارة: ' + visits.length);
    alert('عدد الزيارات التي قرأتها لوحة الإدارة: ' + visits.length);
     const parts = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Africa/Algiers',
