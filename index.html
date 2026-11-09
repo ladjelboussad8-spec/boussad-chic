@@ -965,7 +965,38 @@ ${cancelledOrders.map(o=>orderRow(o,true)).join('')||'<div class="empty">لا ت
 renderShippingPrices();
 updateMonthlyAnalysis();
 }
+async function updateVisitorStats() {
+  try {
+    const snap = await getDocs(collection(db, 'visits'));
+    const visits = snap.docs.map(d => d.data());
 
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Africa/Algiers',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date());
+
+    const year = parts.find(p => p.type === 'year').value;
+    const month = parts.find(p => p.type === 'month').value;
+    const today = `${year}-${month}-${parts.find(p => p.type === 'day').value}`;
+    const currentMonth = `${year}-${month}`;
+
+    const todayCount = visits.filter(v => v.date === today).length;
+    const monthCount = visits.filter(v => v.date?.startsWith(currentMonth)).length;
+
+    const el = document.getElementById('visitorStats');
+    if (el) {
+      el.innerHTML = `
+        <div class="stat">زوار اليوم<b>${todayCount}</b></div>
+        <div class="stat">زوار هذا الشهر<b>${monthCount}</b></div>
+        <div class="stat">إجمالي الزيارات<b>${visits.length}</b></div>
+      `;
+    }
+  } catch (error) {
+    console.error('Visitor stats error:', error);
+  }
+}
 
 function orderRow(o, compact=false){
 const content=`
