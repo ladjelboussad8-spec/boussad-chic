@@ -735,7 +735,14 @@ return `${parts.find(p=>p.type==='year').value}-${parts.find(p=>p.type==='month'
 // حساب قيمة المنتجات فقط، دون التوصيل
 function orderProductsTotal(order){
 return (order.items||[]).reduce((sum,item)=>{
-return sum+(Number(item.price)||0)*(Number(item.qty)||0);
+let unitPrice=Number(item.unitPrice ?? item.price)||0;
+let lineTotal=Number(item.lineTotal);
+
+if(!Number.isFinite(lineTotal)||item.lineTotal==null){
+lineTotal=unitPrice*(Number(item.qty)||0);
+}
+
+return sum+lineTotal;
 },0);
 }
 
