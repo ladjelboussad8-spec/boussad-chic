@@ -987,7 +987,14 @@ const content=`
 — ${o.deliveryType==='المنزل'?'توصيل إلى المنزل':o.deliveryType==='المكتب'?'توصيل إلى المكتب':'نوع التوصيل غير محدد'}
 </div>
 <div class="small">
-${(o.items||[]).map(x=>`${esc(x.name)} (${esc(x.color)}, ${esc(x.size)}) × ${x.qty}`).join(' | ')}
+${(o.items||[]).map(x=>{
+const unitPrice=Number(x.unitPrice ?? x.price)||0;
+const lineTotal=x.lineTotal!=null
+? Number(x.lineTotal)
+: unitPrice*(Number(x.qty)||0);
+
+return `${esc(x.name)} (${esc(x.color)}, ${esc(x.size)}) × ${x.qty} — ${money(unitPrice)} للقطعة — المجموع: ${money(lineTotal)}`;
+}).join(' | ')}
 </div>
 <div class="small">
 المنتجات: ${money(orderProductsTotal(o))}
