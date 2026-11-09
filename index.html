@@ -1336,6 +1336,7 @@ await loadStoreConfig();
 
 if(user?.uid===ADMIN_UID){
 await loadOrders();
+await updateVisitorStats();
 status('متصل بـ Firebase — حساب المدير موثّق.');
 }else{
 status('المتجر متصل بـ Firebase. الطلبات تحفظ سحابياً، ولوحة الإدارة تتطلب حساب المدير.');
