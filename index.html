@@ -990,9 +990,12 @@ console.log('بيانات الزيارات:', snap.docs.map(d => d.data()));
     const today = `${year}-${month}-${parts.find(p => p.type === 'day').value}`;
     const currentMonth = `${year}-${month}`;
 
-    const todayCount = visits.filter(v => v.date === today).length;
-    const monthCount = visits.filter(v => v.date?.startsWith(currentMonth)).length;
+    const todayCount = visits.filter(v => String(v.date).trim() === today).length;
+const monthCount = visits.filter(v => String(v.date).trim().startsWith(currentMonth)).length;
 
+console.log('اليوم:', today);
+console.log('عدد السجلات المقروءة:', visits.length);
+console.log('زيارات اليوم:', todayCount);
     const el = document.getElementById('visitorStats');
     if (el) {
       el.innerHTML = `
