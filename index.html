@@ -246,9 +246,26 @@ details[open] .order-arrow{
 <div class="field"><label>اسم المنتج</label><input id="pName" required></div>
 <div class="field"><label>نوع المنتج</label><select id="pType"><option>نساء</option><option>رجال</option></select></div>
 </div>
+
 <div class="row">
-<div class="field"><label>السعر (دج)</label><input id="pPrice" type="number" min="0" required></div>
-<div class="field"><label>الكمية المتوفرة</label><input id="pStock" type="number" min="0" required></div>
+<div class="field">
+<label>السعر العادي للقطعة (دج)</label>
+<input id="pPrice" type="number" min="0" required>
+</div>
+<div class="field">
+<label>الكمية المتوفرة</label>
+<input id="pStock" type="number" min="0" required>
+</div>
+</div>
+<div class="row">
+<div class="field">
+<label>سعر القطعة عند شراء قطعتين (دج)</label>
+<input id="pPrice2" type="number" min="0" placeholder="مثلاً 1800">
+</div>
+<div class="field">
+<label>سعر القطعة عند شراء 3 قطع أو أكثر (دج)</label>
+<input id="pPrice3" type="number" min="0" placeholder="مثلاً 1700">
+</div>
 </div>
 <div class="row">
 <div class="field"><label>المقاسات (افصل بينها بفاصلة)</label><input id="pSizes" placeholder="S, M, L, XL" required></div>
