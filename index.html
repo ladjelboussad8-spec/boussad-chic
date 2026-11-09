@@ -526,7 +526,7 @@ if(!cart.length)return alert('السلة فارغة');
 selectedProduct=null;
 document.getElementById('orderProductSummary').innerHTML=
 cart.map(x=>`<div class="cartline"><span>${esc(x.name)} — ${esc(x.color)} / ${esc(x.size)} × ${x.qty}</span><b>${money(getProductUnitPrice(x,x.qty)*x.qty)}</b></div>`).join('')+
-`<p><b>المجموع: ${money(cart.reduce((s,x)=>s+x.price*x.qty,0))}</b></p>`;
+`<p><b>المجموع: ${cart.reduce((s,x)=>s+getProductUnitPrice(x,x.qty)*x.qty,0)}</b></p>`;
 document.getElementById('orderForm').dataset.mode='cart';
 closeModal('cartModal');
 openModal('orderModal');
