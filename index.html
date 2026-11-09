@@ -973,7 +973,7 @@ updateMonthlyAnalysis();
 }
 async function updateVisitorStats() {
   try {
-    const snap = await getDocs(collection(db, 'visits'));
+    const snap = await getDocsFromServer(collection(db, 'visits'));
 console.log('عدد سجلات الزيارات:', snap.size);
 console.log('بيانات الزيارات:', snap.docs.map(d => d.data()));
     const visits = snap.docs.map(d => d.data());
