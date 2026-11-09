@@ -1004,9 +1004,19 @@ console.log('زيارات اليوم:', todayCount);
         <div class="stat">إجمالي الزيارات<b>${visits.length}</b></div>
       `;
     }
-  } catch (error) {
-    console.error('Visitor stats error:', error);
+  }  catch (error) {
+  console.error('Visitor stats error:', error);
+
+  const el = document.getElementById('visitorStats');
+  if (el) {
+    el.innerHTML = `
+      <div class="stat">
+        خطأ قراءة الزيارات
+        <b>${error.code || error.message}</b>
+      </div>
+    `;
   }
+}
 }
 
 function orderRow(o, compact=false){
