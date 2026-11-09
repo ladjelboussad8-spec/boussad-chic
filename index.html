@@ -494,14 +494,45 @@ document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
 b.classList.add('active');
 renderProducts();
 }
-
 function chooseProduct(id){
 let p=data.products.find(x=>x.id===id);
 if(!p||p.stock<1)return alert('هذا المنتج غير متوفر حالياً');
 
 selectedProduct=p;
+
 document.getElementById('orderProductSummary').innerHTML=
-`<div class="cartline"><b>${esc(p.name)}</b><b>${money(p.price)}</b></div><div class="row"><div class="field"><label>اللون</label><select id="oColor">${p.colors.map(c=>`<option>${esc(c)}</option>`).join('')}</select></div><div class="field"><label>المقاس</label><select id="oSize">${p.sizes.map(s=>`<option>${esc(s)}</option>`).join('')}</select></div></div><div class="field"><label>الكمية</label><input id="oQty" type="number" min="1" max="${p.stock}" value="1"></div>`;
+`<div class="cartline">
+<b>${esc(p.name)}</b>
+<b id="singleProductPrice">${money(p.price)}</b>
+</div>
+<div class="row">
+<div class="field">
+<label>اللون</label>
+<select id="oColor">${p.colors.map(c=>`<option>${esc(c)}</option>`).join('')}</select>
+</div>
+<div class="field">
+<label>المقاس</label>
+<select id="oSize">${p.sizes.map(s=>`<option>${esc(s)}</option>`).join('')}</select>
+</div>
+</div>
+<div class="field">
+<label>الكمية</label>
+<input id="oQty" type="number" min="1" max="${p.stock}" value="1">
+</div>
+<div class="cartline">
+<span>المجموع</span>
+<b id="singleProductTotal">${money(p.price)}</b>
+</div>`;
+
+const qtyInput=document.getElementById('oQty');
+
+qtyInput.addEventListener('input',()=>{
+let q=Number(qtyInput.value)||1;
+let unitPrice=getProductUnitPrice(p,q);
+
+document.getElementById('singleProductPrice').textContent=money(unitPrice)+' للقطعة';
+document.getElementById('singleProductTotal').textContent=money(unitPrice*q);
+});
 
 document.getElementById('orderForm').dataset.mode='single';
 openModal('orderModal');
