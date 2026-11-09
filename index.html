@@ -471,7 +471,15 @@ document.getElementById('cCarrier').addEventListener('change',updateDeliveryEsti
 document.getElementById('cWilaya').addEventListener('change',updateDeliveryEstimate);
 document.getElementById('cDeliveryType').addEventListener('change',updateDeliveryEstimate);
 refreshCarrierSelects();
+function getProductUnitPrice(product, qty){
+if(qty>=3 && product.price3!=null && product.price3!=='')
+return Number(product.price3);
 
+if(qty===2 && product.price2!=null && product.price2!=='')
+return Number(product.price2);
+
+return Number(product.price)||0;
+}
 function renderProducts(){
 let list=data.products.filter(p=>activeFilter==='all'||p.type===activeFilter);
 
