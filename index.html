@@ -977,7 +977,7 @@ async function updateVisitorStats() {
 console.log('عدد سجلات الزيارات:', snap.size);
 console.log('بيانات الزيارات:', snap.docs.map(d => d.data()));
     const visits = snap.docs.map(d => d.data());
-
+   alert('عدد الزيارات التي قرأتها لوحة الإدارة: ' + visits.length);
     const parts = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Africa/Algiers',
       year: 'numeric',
