@@ -1284,8 +1284,9 @@ async function recordDailyVisit() {
 
     localStorage.setItem(key, '1');
   } catch (error) {
-    console.error('Visit tracking error:', error);
-  }
+  console.error('Visit tracking error:', error);
+  status('خطأ تسجيل الزيارة: ' + (error.code || '') + ' — ' + error.message);
+}
 }
 
 recordDailyVisit();
