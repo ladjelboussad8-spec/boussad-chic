@@ -921,6 +921,7 @@ document.getElementById('tab-'+x).classList.toggle('hidden',x!==t);
 
 renderAdmin();
 
+if(t==='overview')updateVisitorStats();
 if(t==='shipping')renderShippingPrices();
 if(t==='monthly')updateMonthlyAnalysis();
 }
