@@ -559,19 +559,6 @@ qty:q
 }else{
 items=cart.map(x=>({...x}));
 }
-function getProductUnitPrice(product, qty){
-if(qty>=3 && product.price3!=null && product.price3!=='')
-return Number(product.price3);
-
-if(qty===2 && product.price2!=null && product.price2!=='')
-return Number(product.price2);
-
-return Number(product.price)||0;
-}
-for(let x of items){
-let p=data.products.find(p=>p.id===x.id);
-if(!p||p.stock<x.qty)return alert('الكمية لم تعد متوفرة للمنتج: '+x.name);
-}
 
 items.forEach(x=>{
 let p=data.products.find(p=>p.id===x.id);
