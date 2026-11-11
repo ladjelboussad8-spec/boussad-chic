@@ -1366,7 +1366,25 @@ query(collection(db,'orders'),orderBy('createdAt','desc'))
 const orders=snap.docs.map(x=>({id:x.id,...x.data()}));
 window.mergeCloudOrders(orders);
 }
+async function deleteExpiredCancelledOrders() {
+  const snap = await getDocs(collection(db, 'orders'));
+  const now = Date.now();
+  const thirtyDays = 30 * 24 * 60 * 60 * 1000;
 
+  for (const item of snap.docs) {
+    const order = item.data();
+
+    if (
+      order.status === 'ملغي' &&
+      order.cancelledAt &&
+      now - new Date(order.cancelledAt).getTime() >= thirtyDays
+    ) {
+      await deleteDoc(doc(db, 'orders', item.id));
+    }
+  }
+
+  await loadOrders();
+}
 window.firebaseAdminLogin=async(email,password)=>{
 const cred=await signInWithEmailAndPassword(auth,email,password);
 
