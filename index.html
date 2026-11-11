@@ -1267,7 +1267,13 @@ window.firebaseGetVisits = async () => {
   return snap.docs.map(d => d.data());
 };
 window.firebaseUpdateOrderStatus=async(id,status)=>{
-await updateDoc(doc(db,'orders',id),{status});
+  const updates = {status};
+
+  if(status === 'ملغي'){
+    updates.cancelledAt = new Date().toISOString();
+  }
+
+  await updateDoc(doc(db,'orders',id),updates);
 };
 
 const status=(msg)=>{
