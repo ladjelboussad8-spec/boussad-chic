@@ -1416,7 +1416,7 @@ try{
 await loadStoreConfig();
 
 if(user?.uid===ADMIN_UID){
-await loadOrders();
+await deleteExpiredCancelledOrders();
 await updateVisitorStats();
 status('متصل بـ Firebase — حساب المدير موثّق.');
 }else{
