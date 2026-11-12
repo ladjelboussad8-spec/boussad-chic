@@ -1301,10 +1301,8 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
     if(status==='ملغي'){
       updates.cancelledAt=new Date().toISOString();
     }
-
     let updatedProducts=null;
-
-    if(status==='تم التسليم' && !order.inventoryDeducted){
+    if(status==='تم التسليم' && order.status!=='تم التسليم' && !order.inventoryDeducted){
       const storeSnap=await transaction.get(storeRef);
 
       if(!storeSnap.exists()){
