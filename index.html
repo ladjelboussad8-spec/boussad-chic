@@ -1262,7 +1262,7 @@ import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from
 import {
   getFirestore, doc, getDoc, setDoc, updateDoc,deleteDoc,
   collection, addDoc, getDocs, getDocsFromServer,
-  query, orderBy
+  query, orderBy ,runTransaction
 } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 const firebaseConfig = {
   apiKey: "AIzaSyD0k5FVF7mRpcwjhtuAM7ypnlWIbeTxnrE",
@@ -1283,15 +1283,80 @@ window.firebaseGetVisits = async () => {
   const snap = await getDocsFromServer(collection(db, 'visits'));
   return snap.docs.map(d => d.data());
 };
+
 window.firebaseUpdateOrderStatus=async(id,status)=>{
-  const updates = {status};
+  const orderRef=doc(db,'orders',id);
+  const storeRef=doc(db,'store','public');
 
-  if(status === 'ملغي'){
-    updates.cancelledAt = new Date().toISOString();
+  const result=await runTransaction(db,async(transaction)=>{
+    const orderSnap=await transaction.get(orderRef);
+
+    if(!orderSnap.exists()){
+      throw new Error('الطلب غير موجود');
+    }
+
+    const order=orderSnap.data();
+    const updates={status};
+
+    if(status==='ملغي'){
+      updates.cancelledAt=new Date().toISOString();
+    }
+
+    let updatedProducts=null;
+
+    if(status==='تم التسليم' && !order.inventoryDeducted){
+      const storeSnap=await transaction.get(storeRef);
+
+      if(!storeSnap.exists()){
+        throw new Error('بيانات المتجر غير موجودة');
+      }
+
+      const products=storeSnap.data().products||[];
+      const quantities={};
+
+      for(const item of (order.items||[])){
+        quantities[item.id]=(quantities[item.id]||0)+Number(item.qty||0);
+      }
+
+      for(const productId of Object.keys(quantities)){
+        const product=products.find(p=>p.id===productId);
+
+        if(!product){
+          throw new Error('أحد منتجات الطلب غير موجود');
+        }
+
+        if(Number(product.stock)<quantities[productId]){
+          throw new Error('المخزون غير كافٍ للمنتج: '+product.name);
+        }
+      }
+
+      updatedProducts=products.map(product=>{
+        const qty=quantities[product.id]||0;
+
+        return qty
+          ? {...product,stock:Number(product.stock)-qty}
+          : product;
+      });
+
+      transaction.update(storeRef,{
+        products:updatedProducts,
+        updatedAt:new Date().toISOString()
+      });
+
+      updates.inventoryDeducted=true;
+      updates.deliveredAt=new Date().toISOString();
+    }
+
+    transaction.update(orderRef,updates);
+
+    return updatedProducts;
+  });
+
+  if(result){
+    window.replaceStoreData({products:result});
   }
-
-  await updateDoc(doc(db,'orders',id),updates);
 };
+
 
 const status=(msg)=>{
 const el=document.getElementById('cloudStatus');
