@@ -639,6 +639,7 @@ let configured=((data.shippingPrices||{})[carrier]||{})[wilaya]||{};
 let fee=configured[deliveryType==='المنزل'?'home':'office'];
 
 let order={
+  trackingToken:crypto.randomUUID(),
 id:'BC-'+Date.now().toString().slice(-7),
 date:new Date().toLocaleString('ar-DZ'),
 customer:document.getElementById('cName').value,
