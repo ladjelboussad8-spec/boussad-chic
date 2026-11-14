@@ -1486,9 +1486,15 @@ status('متصل بـ Firebase — تم التحقق من حساب المدير.
 window.firebaseAdminLogout=()=>signOut(auth);
 
 window.firebaseCreateOrder=async(order)=>{
-const payload={...order,createdAt:new Date().toISOString()};
-delete payload.id;
-await addDoc(collection(db,'orders'),payload);
+  const payload={
+    ...order,
+    orderNumber:order.id,
+    createdAt:new Date().toISOString()
+  };
+
+  delete payload.id;
+
+  await addDoc(collection(db,'orders'),payload);
 };
 
 onAuthStateChanged(auth,async user=>{
