@@ -1278,7 +1278,53 @@ applyTheme(isLight?'dark':'light');
 }
 
 applyTheme(localStorage.getItem('boussadTheme')||'dark');
+async function trackMyOrder(){
 
+  const input=document.getElementById('trackingTokenInput');
+  const result=document.getElementById('trackingResult');
+  const button=document.getElementById('trackOrderBtn');
+
+  const token=input.value.trim();
+
+  if(!token){
+    result.textContent='يرجى إدخال رمز تتبع الطلب.';
+    result.classList.remove('hidden');
+    return;
+  }
+
+  button.disabled=true;
+  button.textContent='جارٍ البحث...';
+  result.classList.remove('hidden');
+  result.textContent='نبحث عن حالة طلبك...';
+
+  try{
+    const response=await fetch(
+      'https://boussad-chic-tools.ladjelboussad8.workers.dev/track/'+encodeURIComponent(token)
+    );
+
+    const data=await response.json();
+
+    if(!response.ok){
+      throw new Error('لم يتم العثور على الطلب. تأكد من رمز التتبع.');
+    }
+
+    const messages={
+      'جديد':'تم تسجيل طلبك بنجاح.',
+      'قيد المعالجة':'طلبك قيد التحضير.',
+      'تم الشحن':'طلبك تم شحنه.',
+      'تم التسليم':'تم تسليم طلبك بنجاح.',
+      'ملغي':'تم إلغاء الطلب.'
+    };
+
+    result.textContent=messages[data.status]||'حالة الطلب: '+data.status;
+
+  }catch(error){
+    result.textContent=error.message||'حدث خطأ أثناء البحث. حاول مجددًا.';
+  }finally{
+    button.disabled=false;
+    button.textContent='تتبّع الطلب';
+  }
+}
 </script>
 
 <script type="module">
