@@ -1329,15 +1329,6 @@ if(files.length){
 
 
 let image=images[0]||'';
-
-if(file){
-image=await new Promise(resolve=>{
-let r=new FileReader();
-r.onload=()=>resolve(r.result);
-r.readAsDataURL(file);
-});
-}
-
 let p={
 id:id||'p'+Date.now(),
 name:document.getElementById('pName').value,
