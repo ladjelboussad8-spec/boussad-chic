@@ -162,6 +162,22 @@ details[open] .order-arrow{
 </div>
 </div>
 <div class="grid" id="productGrid"></div>
+
+<section id="trackOrderSection" style="margin-top:45px;padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:18px;">
+  <div class="eyebrow">ORDER TRACKING</div>
+  <h2 class="section-title" style="margin:10px 0;">تتبّع طلباتي</h2>
+  <p class="muted">أدخل رمز التتبع الذي حصلت عليه بعد تسجيل طلبك لمعرفة حالته.</p>
+
+  <div class="field">
+    <label for="trackingTokenInput">رمز تتبع الطلب</label>
+    <input id="trackingTokenInput" type="text" placeholder="ألصق رمز التتبع هنا" dir="ltr">
+  </div>
+
+  <button class="gold" id="trackOrderBtn" onclick="trackMyOrder()">تتبّع الطلب</button>
+
+  <div id="trackingResult" class="notice hidden" aria-live="polite"></div>
+</section>
+
 </main>
 
 <main id="adminView" class="hidden">
