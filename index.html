@@ -292,7 +292,12 @@ details[open] .order-arrow{
 <div class="field"><label>المقاسات (افصل بينها بفاصلة)</label><input id="pSizes" placeholder="S, M, L, XL" required></div>
 <div class="field"><label>الألوان (افصل بينها بفاصلة)</label><input id="pColors" placeholder="أسود, أبيض" required></div>
 </div>
-<div class="field"><label>صورة المنتج</label><input id="pImage" type="file" accept="image/*"><div class="small">يمكن اختيار صورة من جهازك. تُحفظ محلياً في هذا النموذج.</div></div>
+<div class="field">
+  <label>صور المنتج (5 صور كحد أقصى)</label>
+  <input id="pImage" type="file" accept="image/*" multiple>
+  <div class="small">يمكنك اختيار حتى 5 صور للمنتج من هاتفك.</div>
+  <div id="imageCount" class="small">لم يتم اختيار صور بعد.</div>
+</div>
 <button class="gold" type="submit" style="width:100%">حفظ المنتج</button>
 </form>
 </div>
