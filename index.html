@@ -1207,10 +1207,32 @@ renderAdmin();
 document.getElementById('productForm').onsubmit=async e=>{
 e.preventDefault();
 
+
 let id=document.getElementById('editId').value;
 let old=data.products.find(p=>p.id===id);
-let file=document.getElementById('pImage').files[0];
-let image=old?.image||'';
+
+const files=Array.from(document.getElementById('pImage').files);
+
+if(files.length>5){
+  alert('يمكن اختيار 5 صور كحد أقصى.');
+  return;
+}
+
+const readImage=file=>new Promise(resolve=>{
+  let r=new FileReader();
+  r.onload=()=>resolve(r.result);
+  r.readAsDataURL(file);
+});
+
+let images=old?.images?.length
+  ? [...old.images]
+  : (old?.image ? [old.image] : []);
+
+if(files.length){
+  images=await Promise.all(files.map(readImage));
+}
+
+let image=images[0]||'';
 
 if(file){
 image=await new Promise(resolve=>{
