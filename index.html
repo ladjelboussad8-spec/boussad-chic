@@ -657,12 +657,23 @@ status:'جديد'
 
 data.orders.unshift(order);
 save();
-window.firebaseCreateOrder?.(order).catch(err=>console.error('Cloud order save failed',err));
+let trackingUrl = null;
 
+try {
+  trackingUrl = await window.firebaseCreateOrder(order);
+} catch(err) {
+  console.error('Cloud order save failed',err);
+}
 cart=[];
 renderCart();
 closeModal('orderModal');
-alert('تم تسجيل طلبك التجريبي بنجاح. رقم الطلب: '+order.id+' — سيتم تأكيد سعر التوصيل معك من الإدارة.');
+alert(
+  'تم تسجيل طلبك بنجاح. رقم الطلب: ' + order.id +
+  ' — سيتم تأكيد سعر التوصيل معك من الإدارة.' +
+  (trackingUrl
+    ? '\n\nرابط تتبع طلبك:\n' + trackingUrl
+    : '\n\nتعذر إنشاء رابط التتبع، يرجى التواصل مع الإدارة.')
+);
 e.target.reset();
 renderProducts();
 };
