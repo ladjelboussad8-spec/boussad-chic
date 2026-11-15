@@ -588,8 +588,7 @@ closeModal('cartModal');
 openModal('orderModal');
 updateDeliveryEstimate();
 }
-
-document.getElementById('orderForm').onsubmit=e=>{
+document.getElementById('orderForm').onsubmit=async e=>{
 e.preventDefault();
 
 const phone=document.getElementById('cPhone').value.trim();
