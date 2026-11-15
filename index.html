@@ -1302,7 +1302,9 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
     if(status==='ملغي'){
       updates.cancelledAt=new Date().toISOString();
     }
+
     let updatedProducts=null;
+
     if(status==='تم التسليم' && order.status!=='تم التسليم' && !order.inventoryDeducted){
       const storeSnap=await transaction.get(storeRef);
 
@@ -1331,7 +1333,6 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
 
       updatedProducts=products.map(product=>{
         const qty=quantities[product.id]||0;
-
         return qty
           ? {...product,stock:Number(product.stock)-qty}
           : product;
@@ -1348,15 +1349,43 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
 
     transaction.update(orderRef,updates);
 
-    return updatedProducts;
+    return {
+      products:updatedProducts,
+      trackingToken:order.trackingToken
+    };
   });
 
-  if(result){
-    window.replaceStoreData({products:result});
+  if(result.products){
+    window.replaceStoreData({products:result.products});
+  }
+
+  if(result.trackingToken && auth.currentUser){
+    try{
+      const idToken=await auth.currentUser.getIdToken();
+
+      const response=await fetch(
+        'https://boussad-chic-tools.ladjelboussad8.workers.dev/admin/update',
+        {
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+idToken
+          },
+          body:JSON.stringify({
+            token:result.trackingToken,
+            status:status
+          })
+        }
+      );
+
+      if(!response.ok){
+        throw new Error('Cloudflare tracking update failed');
+      }
+    }catch(err){
+      console.error('Tracking update failed:',err);
+    }
   }
 };
-
-
 const status=(msg)=>{
 const el=document.getElementById('cloudStatus');
 if(el)el.textContent=msg;
