@@ -1314,9 +1314,18 @@ let images=old?.images?.length
   ? [...old.images]
   : (old?.image ? [old.image] : []);
 
+
 if(files.length){
   images=await Promise.all(files.map(readImage));
+
+  const totalSize=images.reduce((sum,img)=>sum+img.length,0);
+
+  if(totalSize>600000){
+    alert('حجم الصور الإجمالي كبير. اختر صورًا أقل أو أصغر.');
+    return;
+  }
 }
+
 
 let image=images[0]||'';
 
