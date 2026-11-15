@@ -1496,6 +1496,29 @@ window.firebaseCreateOrder=async(order)=>{
   delete payload.id;
 
   await addDoc(collection(db,'orders'),payload);
+
+  try{
+    const result=await fetch(
+      'https://boussad-chic-tools.ladjelboussad8.workers.dev/create',
+      {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          token:order.trackingToken
+        })
+      }
+    );
+
+    if(!result.ok){
+      throw new Error('Tracking creation failed');
+    }
+
+    return 'https://boussad-chic-tools.ladjelboussad8.workers.dev/track/'+encodeURIComponent(order.trackingToken);
+
+  }catch(err){
+    console.error('Tracking creation failed:',err);
+    return null;
+  }
 };
 
 onAuthStateChanged(auth,async user=>{
