@@ -1391,7 +1391,7 @@ const isLight=document.body.classList.contains('light-mode');
 applyTheme(isLight?'dark':'light');
 }
 
-applyTheme(localStorage.getItem('boussadTheme')||'dark');
+applyTheme('light');
 async function trackMyOrder(){
 
   const input=document.getElementById('trackingTokenInput');
