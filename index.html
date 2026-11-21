@@ -730,7 +730,8 @@ let items;
 
 if(e.target.dataset.mode==='single'){
 let q=Number(document.getElementById('oQty').value);
-if(q<1||q>selectedProduct.stock)return alert('الكمية المطلوبة غير متوفرة');
+const available=Number(selectedProduct.sizeStock?.[document.getElementById('oSize').value] ?? selectedProduct.stock ?? 0);
+if(q<1||q>available)return alert('الكمية المطلوبة غير متوفرة لهذا المقاس');
 items=[{
 id:selectedProduct.id,
 name:selectedProduct.name,
