@@ -1257,6 +1257,35 @@ save();
 renderAdmin();
 }
 }
+  
+function updateSizeStockFields(){
+  const sizes=document.getElementById('pSizes').value
+    .split(',')
+    .map(s=>s.trim())
+    .filter(Boolean);
+
+  const container=document.getElementById('sizeStockFields');
+
+  container.innerHTML=sizes.map((size,index)=>`
+    <div class="field">
+      <label>الكمية للمقاس ${esc(size)}</label>
+      <input
+        type="number"
+        min="0"
+        value="0"
+        class="size-stock-input"
+        data-size="${esc(size)}"
+        required
+      >
+    </div>
+  `).join('');
+}
+
+document.getElementById('pSizes').addEventListener(
+  'input',
+  updateSizeStockFields
+);
+  
 document.getElementById('productForm').onsubmit=async e=>{
 alert('بدأ حفظ المنتج');
   e.preventDefault();
