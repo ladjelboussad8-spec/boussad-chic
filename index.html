@@ -1564,6 +1564,7 @@ window.firebaseGetVisits = async () => {
   return snap.docs.map(d => d.data());
 };
 
+
 window.firebaseUpdateOrderStatus=async(id,status)=>{
   const orderRef=doc(db,'orders',id);
   const storeRef=doc(db,'store','public');
@@ -1595,26 +1596,67 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
       const quantities={};
 
       for(const item of (order.items||[])){
-        quantities[item.id]=(quantities[item.id]||0)+Number(item.qty||0);
+        const productId=item.id;
+        const qty=Number(item.qty||0);
+
+        if(!quantities[productId]){
+          quantities[productId]={total:0,sizes:{}};
+        }
+
+        quantities[productId].total+=qty;
+
+        if(item.size){
+          quantities[productId].sizes[item.size]=
+            (quantities[productId].sizes[item.size]||0)+qty;
+        }
       }
 
       for(const productId of Object.keys(quantities)){
         const product=products.find(p=>p.id===productId);
+        const requested=quantities[productId];
 
         if(!product){
           throw new Error('أحد منتجات الطلب غير موجود');
         }
 
-        if(Number(product.stock)<quantities[productId]){
+        if(product.sizeStock && Object.keys(product.sizeStock).length){
+          for(const size of Object.keys(requested.sizes)){
+            if(Number(product.sizeStock[size]||0)<requested.sizes[size]){
+              throw new Error('المخزون غير كافٍ للمقاس '+size+' من المنتج '+product.name);
+            }
+          }
+
+          if(requested.total!==Object.values(requested.sizes).reduce((a,b)=>a+b,0)){
+            throw new Error('بيانات مقاسات الطلب غير مكتملة للمنتج '+product.name);
+          }
+        }else if(Number(product.stock)<requested.total){
           throw new Error('المخزون غير كافٍ للمنتج: '+product.name);
         }
       }
 
       updatedProducts=products.map(product=>{
-        const qty=quantities[product.id]||0;
-        return qty
-          ? {...product,stock:Number(product.stock)-qty}
-          : product;
+        const requested=quantities[product.id];
+
+        if(!requested)return product;
+
+        if(product.sizeStock && Object.keys(product.sizeStock).length){
+          const sizeStock={...product.sizeStock};
+
+          for(const size of Object.keys(requested.sizes)){
+            sizeStock[size]=Number(sizeStock[size]||0)-requested.sizes[size];
+          }
+
+          const totalStock=Object.values(sizeStock).reduce(
+            (sum,value)=>sum+Number(value||0),0
+          );
+
+          return {...product,sizeStock,stock:totalStock};
+        }
+
+        return {
+          ...product,
+          stock:Number(product.stock)-requested.total
+        };
       });
 
       transaction.update(storeRef,{
@@ -1665,6 +1707,7 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
     }
   }
 };
+
 const status=(msg)=>{
 const el=document.getElementById('cloudStatus');
 if(el)el.textContent=msg;
