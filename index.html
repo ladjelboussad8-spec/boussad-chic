@@ -594,50 +594,95 @@ document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
 b.classList.add('active');
 renderProducts();
 }
+
 function chooseProduct(id){
-let p=data.products.find(x=>x.id===id);
-if(!p||p.stock<1)return alert('هذا المنتج غير متوفر حالياً');
+  let p=data.products.find(x=>x.id===id);
+  if(!p||p.stock<1)return alert('هذا المنتج غير متوفر حالياً');
 
-selectedProduct=p;
+  selectedProduct=p;
 
-document.getElementById('orderProductSummary').innerHTML=
-`<div class="cartline">
-<b>${esc(p.name)}</b>
-<b id="singleProductPrice">${money(p.price)}</b>
-</div>
-<div class="row">
-<div class="field">
-<label>اللون</label>
-<select id="oColor">${p.colors.map(c=>`<option>${esc(c)}</option>`).join('')}</select>
-</div>
-<div class="field">
-<label>المقاس</label>
-<select id="oSize">${p.sizes.map(s=>`<option>${esc(s)}</option>`).join('')}</select>
-</div>
-</div>
-<div class="field">
-<label>الكمية</label>
-<input id="oQty" type="number" min="1" max="${p.stock}" value="1">
-</div>
-<div class="cartline">
-<span>المجموع</span>
-<b id="singleProductTotal">${money(p.price)}</b>
-</div>`;
+  const getSizeStock=size=>{
+    return Number(p.sizeStock?.[size] ?? p.stock ?? 0);
+  };
 
-const qtyInput=document.getElementById('oQty');
+  document.getElementById('orderProductSummary').innerHTML=
+  `<div class="cartline">
+    <b>${esc(p.name)}</b>
+    <b id="singleProductPrice">${money(p.price)}</b>
+  </div>
+  <div class="row">
+    <div class="field">
+      <label>اللون</label>
+      <select id="oColor">${p.colors.map(c=>`<option>${esc(c)}</option>`).join('')}</select>
+    </div>
+    <div class="field">
+      <label>المقاس</label>
+      <select id="oSize">
+        ${p.sizes.map(s=>`
+          <option value="${esc(s)}" ${getSizeStock(s)<=0?'disabled':''}>
+            ${esc(s)} ${getSizeStock(s)<=0?'(نفد المخزون)':''}
+          </option>
+        `).join('')}
+      </select>
+      <div id="sizeAvailability" class="small"></div>
+    </div>
+  </div>
+  <div class="field">
+    <label>الكمية</label>
+    <input id="oQty" type="number" min="1" max="1" value="1">
+  </div>
+  <div class="cartline">
+    <span>المجموع</span>
+    <b id="singleProductTotal">${money(p.price)}</b>
+  </div>`;
 
-qtyInput.addEventListener('input',()=>{
-let q=Number(qtyInput.value)||1;
-let unitPrice=getProductUnitPrice(p,q);
+  const qtyInput=document.getElementById('oQty');
+  const sizeSelect=document.getElementById('oSize');
+  const availability=document.getElementById('sizeAvailability');
 
-document.getElementById('singleProductPrice').textContent=money(unitPrice)+' للقطعة';
-document.getElementById('singleProductTotal').textContent=money(unitPrice*q);
-});
+  function updateSelectedSize(){
+    const stock=getSizeStock(sizeSelect.value);
 
-document.getElementById('orderForm').dataset.mode='single';
-openModal('orderModal');
-updateDeliveryEstimate();
+    availability.textContent=stock<=0
+      ?'نفد هذا المقاس'
+      :'المتوفر من هذا المقاس: '+stock;
+
+    availability.style.color=stock<=0?'#d33':'green';
+
+    qtyInput.max=stock;
+    qtyInput.value=stock>0?1:0;
+    qtyInput.disabled=stock<=0;
+
+    updateTotal();
+  }
+
+  function updateTotal(){
+    let q=Number(qtyInput.value)||1;
+    let unitPrice=getProductUnitPrice(p,q);
+
+    document.getElementById('singleProductPrice').textContent=money(unitPrice)+' للقطعة';
+    document.getElementById('singleProductTotal').textContent=money(unitPrice*q);
+  }
+
+  qtyInput.addEventListener('input',()=>{
+    let stock=getSizeStock(sizeSelect.value);
+    let q=Number(qtyInput.value)||1;
+
+    if(q>stock)qtyInput.value=stock;
+    if(q<1)qtyInput.value=1;
+
+    updateTotal();
+  });
+
+  sizeSelect.addEventListener('change',updateSelectedSize);
+
+  updateSelectedSize();
+
+  document.getElementById('orderForm').dataset.mode='single';
+  openModal('orderModal');
+  updateDeliveryEstimate();
 }
+
 
 function openModal(id){document.getElementById(id).classList.add('show')}
 function closeModal(id){document.getElementById(id).classList.remove('show')}
