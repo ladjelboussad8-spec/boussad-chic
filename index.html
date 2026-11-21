@@ -289,8 +289,22 @@ details[open] .order-arrow{
 </div>
 </div>
 <div class="row">
-<div class="field"><label>المقاسات (افصل بينها بفاصلة)</label><input id="pSizes" placeholder="S, M, L, XL" required></div>
-<div class="field"><label>الألوان (افصل بينها بفاصلة)</label><input id="pColors" placeholder="أسود, أبيض" required></div>
+
+<div class="field">
+  <label>المقاسات (افصل بينها بفاصلة)</label>
+  <input id="pSizes" placeholder="S, M, L, XL, XXL أو 40, 41, 42, 43" required>
+</div>
+
+<div class="field">
+  <label>كميات المخزون لكل مقاس</label>
+  <div id="sizeStockFields" class="grid"></div>
+</div>
+
+<div class="field">
+  <label>الألوان (افصل بينها بفاصلة)</label>
+  <input id="pColors" placeholder="أسود, أبيض" required>
+</div>
+
 </div>
 <div class="field">
   <label>صور المنتج (5 صور كحد أقصى)</label>
