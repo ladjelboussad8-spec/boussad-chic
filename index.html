@@ -1371,6 +1371,13 @@ if(files.length){
 
 
 let image=images[0]||'';
+  
+const sizeStock={};
+
+document.querySelectorAll('.size-stock-input').forEach(input=>{
+  sizeStock[input.dataset.size]=Number(input.value);
+});
+  
 let p={
 id:id||'p'+Date.now(),
 name:document.getElementById('pName').value,
@@ -1379,7 +1386,7 @@ price:Number(document.getElementById('pPrice').value),
 price2:document.getElementById('pPrice2').value === '' ? null : Number(document.getElementById('pPrice2').value),
 price3:document.getElementById('pPrice3').value === '' ? null : Number(document.getElementById('pPrice3').value),
 stock:Number(document.getElementById('pStock').value),
-sizes:document.getElementById('pSizes').value.split(',').map(x=>x.trim()).filter(Boolean),
+sizes:document.getElementById('pSizes').value.split(',').map(x=>x.trim()).filter(Boolean),sizeStock,
 colors:document.getElementById('pColors').value.split(',').map(x=>x.trim()).filter(Boolean),
 image,
 images
