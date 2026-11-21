@@ -657,8 +657,8 @@ if(totalStock<1)return alert('هذا المنتج غير متوفر حالياً
     const stock=getSizeStock(sizeSelect.value);
 
     availability.textContent=stock<=0
-      ?'نفد هذا المقاس'
-      :'المتوفر من هذا المقاس: '+stock;
+  ?'نفد هذا المقاس'
+  :'متوفر';
 
     availability.style.color=stock<=0?'#d33':'green';
 
