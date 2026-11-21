@@ -526,9 +526,17 @@ function renderProducts(){
 
   document.getElementById('productGrid').innerHTML=list.length
   ?list.map(p=>{
-    let stock=Number(p.stock)||0;
-    let stockText=stock<=0?'نفد المخزون':stock<=2?'كمية محدودة':'متوفر';
-    let disabled=stock<=0;
+    let stock=p.sizeStock
+  ?Object.values(p.sizeStock).reduce((sum,value)=>sum+Number(value||0),0)
+  :Number(p.stock)||0;
+
+let stockText=stock<=0
+  ?'نفد المخزون'
+  :stock<=2
+    ?'كمية محدودة'
+    :'متوفر';
+
+let disabled=stock<=0;
     let photos=p.images?.length?p.images:(p.image?[p.image]:[]);
     let firstImage=photos[0]||'';
 
