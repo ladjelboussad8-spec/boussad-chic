@@ -1378,9 +1378,7 @@ document.body.classList.toggle('light-mode',theme==='light');
 const btn=document.getElementById('themeToggle');
 
 if(btn){
-btn.textContent=theme==='light'
-?'🌙 الوضع الداكن'
-:'☀️ الوضع الفاتح';
+btn.textContent=theme==='light'?'🌙':'☀️';
 }
 
 localStorage.setItem('boussadTheme',theme);
