@@ -1446,12 +1446,21 @@ if(files.length){
 
 
 let image=images[0]||'';
-  
-const sizeStock={};
-
+  const colorSizeStock={};
 document.querySelectorAll('.size-stock-input').forEach(input=>{
-  sizeStock[input.dataset.size]=Number(input.value);
+  const color=input.dataset.color;
+  const size=input.dataset.size;
+
+  if(!colorSizeStock[color]){
+    colorSizeStock[color]={};
+  }
+
+  colorSizeStock[color][size]=Number(input.value);
 });
+
+const stock=Object.values(colorSizeStock)
+  .flatMap(sizes=>Object.values(sizes))
+  .reduce((sum,value)=>sum+Number(value||0),0);
   
 let p={
 id:id||'p'+Date.now(),
@@ -1460,8 +1469,8 @@ type:document.getElementById('pType').value,
 price:Number(document.getElementById('pPrice').value),
 price2:document.getElementById('pPrice2').value === '' ? null : Number(document.getElementById('pPrice2').value),
 price3:document.getElementById('pPrice3').value === '' ? null : Number(document.getElementById('pPrice3').value),
-stock:Number(document.getElementById('pStock').value),
-sizes:document.getElementById('pSizes').value.split(',').map(x=>x.trim()).filter(Boolean),sizeStock,
+stock,
+sizes:document.getElementById('pSizes').value.split(',').map(x=>x.trim()).filter(Boolean),colorSizeStock,
 colors:document.getElementById('pColors').value.split(',').map(x=>x.trim()).filter(Boolean),
 image,
 images
