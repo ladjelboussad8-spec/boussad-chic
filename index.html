@@ -296,7 +296,7 @@ details[open] .order-arrow{
 </div>
 
 <div class="field">
-  <label>كميات المخزون لكل مقاس</label>
+  <label>كميات المخزون لكل لون ومقاس</label>
   <div id="sizeStockFields" class="grid"></div>
 </div>
 
@@ -1323,23 +1323,39 @@ function updateSizeStockFields(){
     .map(s=>s.trim())
     .filter(Boolean);
 
+  const colors=document.getElementById('pColors').value
+    .split(',')
+    .map(c=>c.trim())
+    .filter(Boolean);
+
   const container=document.getElementById('sizeStockFields');
 
-  container.innerHTML=sizes.map((size,index)=>`
-    <div class="field">
-      <label>الكمية للمقاس ${esc(size)}</label>
-      <input
-        type="number"
-        min="0"
-        value="0"
-        class="size-stock-input"
-        data-size="${esc(size)}"
-        required
-      >
+  container.innerHTML=colors.map(color=>`
+    <div style="padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:12px">
+      <b>${esc(color)}</b>
+
+      <div class="grid">
+        ${sizes.map(size=>`
+          <div class="field">
+            <label>${esc(color)} — ${esc(size)}</label>
+            <input
+              type="number"
+              min="0"
+              value="0"
+              class="size-stock-input"
+              data-color="${esc(color)}"
+              data-size="${esc(size)}"
+              required
+            >
+          </div>
+        `).join('')}
+      </div>
     </div>
   `).join('');
 }
 
+document.getElementById('pSizes').addEventListener('input',updateSizeStockFields);
+document.getElementById('pColors').addEventListener('input',updateSizeStockFields);
 document.getElementById('pSizes').addEventListener(
   'input',
   updateSizeStockFields
