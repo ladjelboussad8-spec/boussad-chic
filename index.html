@@ -832,13 +832,57 @@ document.getElementById('orderForm').onsubmit=async e=>{
   renderCart();
   closeModal('orderModal');
 
-  alert(
-    'تم تسجيل طلبك بنجاح. رقم الطلب: '+order.id+
-    ' — سيتم تأكيد سعر التوصيل معك من الإدارة.'+
-    (trackingUrl
-      ?'\n\nرابط تتبع طلبك:\n'+trackingUrl
-      :'\n\nتعذر إنشاء رابط التتبع، يرجى التواصل مع الإدارة.')
-  );
+  
+  const messageBox=document.createElement('div');
+  messageBox.style.cssText='position:fixed;inset:0;background:#0009;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px';
+
+  const card=document.createElement('div');
+  card.style.cssText='background:white;color:#222;padding:22px;border-radius:15px;width:100%;max-width:380px;text-align:center';
+
+  const title=document.createElement('h3');
+  title.textContent='تم تسجيل طلبك بنجاح 🎉';
+
+  const info=document.createElement('p');
+  info.textContent='رقم الطلب: '+order.id;
+
+  const tracking=document.createElement('p');
+  tracking.textContent=trackingUrl
+    ?'رمز التتبع: '+order.trackingToken
+    :'تعذر إنشاء رابط التتبع، يرجى التواصل مع الإدارة.';
+
+  const copyButton=document.createElement('button');
+  copyButton.textContent='📋 نسخ رمز التتبع';
+  copyButton.style.cssText='padding:12px 20px;border:0;border-radius:10px;background:#198754;color:white;font-weight:bold;cursor:pointer;margin:8px';
+
+  copyButton.onclick=async()=>{
+    try{
+      await navigator.clipboard.writeText(order.trackingToken);
+      copyButton.textContent='✓ تم نسخ الرمز';
+    }catch(err){
+      prompt('انسخ رمز التتبع:',order.trackingToken);
+    }
+  };
+
+  const closeButton=document.createElement('button');
+  closeButton.textContent='إغلاق';
+  closeButton.style.cssText='padding:10px 20px;border:0;border-radius:10px;cursor:pointer;margin:8px';
+
+  closeButton.onclick=()=>messageBox.remove();
+
+  card.append(title,info,tracking);
+
+  if(trackingUrl){
+    const deliveryInfo=document.createElement('p');
+    deliveryInfo.textContent='سيتم تأكيد سعر التوصيل معك من الإدارة.';
+    card.append(deliveryInfo,copyButton);
+  }
+
+  card.append(closeButton);
+  messageBox.append(card);
+  document.body.append(messageBox);
+
+  e.target.reset();
+  renderProducts();
 
   e.target.reset();
   renderProducts();
