@@ -1639,7 +1639,6 @@ window.firebaseGetVisits = async () => {
   return snap.docs.map(d => d.data());
 };
 
-
 window.firebaseUpdateOrderStatus=async(id,status)=>{
   const orderRef=doc(db,'orders',id);
   const storeRef=doc(db,'store','public');
@@ -1674,15 +1673,36 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
         const productId=item.id;
         const qty=Number(item.qty||0);
 
-        if(!quantities[productId]){
-          quantities[productId]={total:0,sizes:{}};
+        if(qty<1){
+          throw new Error('كمية أحد المنتجات غير صحيحة');
         }
 
-        quantities[productId].total+=qty;
+        if(!quantities[productId]){
+          quantities[productId]={
+            total:0,
+            variants:{},
+            sizes:{},
+            legacyTotal:0
+          };
+        }
 
-        if(item.size){
-          quantities[productId].sizes[item.size]=
-            (quantities[productId].sizes[item.size]||0)+qty;
+        const requested=quantities[productId];
+        requested.total+=qty;
+
+        if(item.color && item.size){
+          if(!requested.variants[item.color]){
+            requested.variants[item.color]={};
+          }
+
+          requested.variants[item.color][item.size]=
+            (requested.variants[item.color][item.size]||0)+qty;
+
+        }else if(item.size){
+          requested.sizes[item.size]=
+            (requested.sizes[item.size]||0)+qty;
+
+        }else{
+          requested.legacyTotal+=qty;
         }
       }
 
@@ -1694,17 +1714,54 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
           throw new Error('أحد منتجات الطلب غير موجود');
         }
 
-        if(product.sizeStock && Object.keys(product.sizeStock).length){
-          for(const size of Object.keys(requested.sizes)){
-            if(Number(product.sizeStock[size]||0)<requested.sizes[size]){
-              throw new Error('المخزون غير كافٍ للمقاس '+size+' من المنتج '+product.name);
+        if(product.colorSizeStock && Object.keys(product.colorSizeStock).length){
+
+          if(
+            Object.keys(requested.sizes).length ||
+            requested.legacyTotal>0
+          ){
+            throw new Error('بيانات اللون والمقاس غير مكتملة للمنتج '+product.name);
+          }
+
+          for(const color of Object.keys(requested.variants)){
+            for(const size of Object.keys(requested.variants[color])){
+              const available=Number(
+                product.colorSizeStock[color]?.[size]||0
+              );
+
+              if(available<requested.variants[color][size]){
+                throw new Error(
+                  'المخزون غير كافٍ للون '+color+
+                  ' والمقاس '+size+' من المنتج '+product.name
+                );
+              }
             }
           }
 
-          if(requested.total!==Object.values(requested.sizes).reduce((a,b)=>a+b,0)){
-            throw new Error('بيانات مقاسات الطلب غير مكتملة للمنتج '+product.name);
+        }else if(product.sizeStock && Object.keys(product.sizeStock).length){
+
+          const requestedSizes={...requested.sizes};
+
+          for(const color of Object.keys(requested.variants)){
+            for(const size of Object.keys(requested.variants[color])){
+              requestedSizes[size]=
+                (requestedSizes[size]||0)+requested.variants[color][size];
+            }
           }
-        }else if(Number(product.stock)<requested.total){
+
+          if(requested.legacyTotal>0){
+            throw new Error('بيانات مقاس الطلب غير مكتملة للمنتج '+product.name);
+          }
+
+          for(const size of Object.keys(requestedSizes)){
+            if(Number(product.sizeStock[size]||0)<requestedSizes[size]){
+              throw new Error(
+                'المخزون غير كافٍ للمقاس '+size+' من المنتج '+product.name
+              );
+            }
+          }
+
+        }else if(Number(product.stock||0)<requested.total){
           throw new Error('المخزون غير كافٍ للمنتج: '+product.name);
         }
       }
@@ -1714,16 +1771,49 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
 
         if(!requested)return product;
 
+        if(product.colorSizeStock && Object.keys(product.colorSizeStock).length){
+
+          const colorSizeStock={};
+
+          for(const color of Object.keys(product.colorSizeStock)){
+            colorSizeStock[color]={
+              ...product.colorSizeStock[color]
+            };
+          }
+
+          for(const color of Object.keys(requested.variants)){
+            for(const size of Object.keys(requested.variants[color])){
+              colorSizeStock[color][size]=
+                Number(colorSizeStock[color][size]||0)-
+                requested.variants[color][size];
+            }
+          }
+
+          const totalStock=Object.values(colorSizeStock)
+            .flatMap(sizes=>Object.values(sizes))
+            .reduce((sum,value)=>sum+Number(value||0),0);
+
+          return {...product,colorSizeStock,stock:totalStock};
+        }
+
         if(product.sizeStock && Object.keys(product.sizeStock).length){
+
           const sizeStock={...product.sizeStock};
 
           for(const size of Object.keys(requested.sizes)){
             sizeStock[size]=Number(sizeStock[size]||0)-requested.sizes[size];
           }
 
-          const totalStock=Object.values(sizeStock).reduce(
-            (sum,value)=>sum+Number(value||0),0
-          );
+          for(const color of Object.keys(requested.variants)){
+            for(const size of Object.keys(requested.variants[color])){
+              sizeStock[size]=
+                Number(sizeStock[size]||0)-
+                requested.variants[color][size];
+            }
+          }
+
+          const totalStock=Object.values(sizeStock)
+            .reduce((sum,value)=>sum+Number(value||0),0);
 
           return {...product,sizeStock,stock:totalStock};
         }
@@ -1782,6 +1872,7 @@ window.firebaseUpdateOrderStatus=async(id,status)=>{
     }
   }
 };
+
 
 const status=(msg)=>{
 const el=document.getElementById('cloudStatus');
