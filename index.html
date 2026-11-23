@@ -603,19 +603,22 @@ b.classList.add('active');
 renderProducts();
 }
 
+
 function chooseProduct(id){
   let p=data.products.find(x=>x.id===id);
   if(!p)return alert('المنتج غير موجود');
 
-const totalStock=p.sizeStock
-  ?Object.values(p.sizeStock).reduce((sum,value)=>sum+Number(value||0),0)
-  :Number(p.stock)||0;
+  const totalStock=Number(p.stock)||0;
+  if(totalStock<1)return alert('هذا المنتج غير متوفر حالياً');
 
-if(totalStock<1)return alert('هذا المنتج غير متوفر حالياً');
   selectedProduct=p;
 
-  const getSizeStock=size=>{
-    return Number(p.sizeStock?.[size] ?? p.stock ?? 0);
+  const getSizeStock=(color,size)=>{
+    return Number(
+      p.colorSizeStock?.[color]?.[size] ??
+      p.sizeStock?.[size] ??
+      0
+    );
   };
 
   document.getElementById('orderProductSummary').innerHTML=
@@ -626,17 +629,13 @@ if(totalStock<1)return alert('هذا المنتج غير متوفر حالياً
   <div class="row">
     <div class="field">
       <label>اللون</label>
-      <select id="oColor">${p.colors.map(c=>`<option>${esc(c)}</option>`).join('')}</select>
+      <select id="oColor">
+        ${(p.colors||[]).map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('')}
+      </select>
     </div>
     <div class="field">
       <label>المقاس</label>
-      <select id="oSize">
-        ${p.sizes.map(s=>`
-          <option value="${esc(s)}" ${getSizeStock(s)<=0?'disabled':''}>
-            ${esc(s)} ${getSizeStock(s)<=0?'(نفد المخزون)':''}
-          </option>
-        `).join('')}
-      </select>
+      <select id="oSize"></select>
       <div id="sizeAvailability" class="small"></div>
     </div>
   </div>
@@ -650,24 +649,9 @@ if(totalStock<1)return alert('هذا المنتج غير متوفر حالياً
   </div>`;
 
   const qtyInput=document.getElementById('oQty');
+  const colorSelect=document.getElementById('oColor');
   const sizeSelect=document.getElementById('oSize');
   const availability=document.getElementById('sizeAvailability');
-
-  function updateSelectedSize(){
-    const stock=getSizeStock(sizeSelect.value);
-
-    availability.textContent=stock<=0
-  ?'نفد هذا المقاس'
-  :'متوفر';
-
-    availability.style.color=stock<=0?'#d33':'green';
-
-    qtyInput.max=stock;
-    qtyInput.value=stock>0?1:0;
-    qtyInput.disabled=stock<=0;
-
-    updateTotal();
-  }
 
   function updateTotal(){
     let q=Number(qtyInput.value)||1;
@@ -677,8 +661,37 @@ if(totalStock<1)return alert('هذا المنتج غير متوفر حالياً
     document.getElementById('singleProductTotal').textContent=money(unitPrice*q);
   }
 
+  function updateSizes(){
+    const color=colorSelect.value;
+
+    sizeSelect.innerHTML=(p.sizes||[]).map(size=>{
+      const stock=getSizeStock(color,size);
+      return `<option value="${esc(size)}" ${stock<=0?'disabled':''}>
+        ${esc(size)} ${stock<=0?'(نفد المخزون)':''}
+      </option>`;
+    }).join('');
+
+    const firstAvailable=(p.sizes||[]).find(size=>getSizeStock(color,size)>0);
+    if(firstAvailable)sizeSelect.value=firstAvailable;
+
+    updateSelectedSize();
+  }
+
+  function updateSelectedSize(){
+    const stock=getSizeStock(colorSelect.value,sizeSelect.value);
+
+    availability.textContent=stock<=0?'نفد هذا المقاس':'متوفر';
+    availability.style.color=stock<=0?'#d33':'green';
+
+    qtyInput.max=stock;
+    qtyInput.value=stock>0?1:0;
+    qtyInput.disabled=stock<=0;
+
+    updateTotal();
+  }
+
   qtyInput.addEventListener('input',()=>{
-    let stock=getSizeStock(sizeSelect.value);
+    let stock=getSizeStock(colorSelect.value,sizeSelect.value);
     let q=Number(qtyInput.value)||1;
 
     if(q>stock)qtyInput.value=stock;
@@ -687,14 +700,16 @@ if(totalStock<1)return alert('هذا المنتج غير متوفر حالياً
     updateTotal();
   });
 
+  colorSelect.addEventListener('change',updateSizes);
   sizeSelect.addEventListener('change',updateSelectedSize);
 
-  updateSelectedSize();
+  updateSizes();
 
   document.getElementById('orderForm').dataset.mode='single';
   openModal('orderModal');
   updateDeliveryEstimate();
 }
+
 
 
 function openModal(id){document.getElementById(id).classList.add('show')}
