@@ -736,95 +736,116 @@ closeModal('cartModal');
 openModal('orderModal');
 updateDeliveryEstimate();
 }
+
 document.getElementById('orderForm').onsubmit=async e=>{
-e.preventDefault();
+  e.preventDefault();
 
-const phone=document.getElementById('cPhone').value.trim();
+  const phone=document.getElementById('cPhone').value.trim();
 
-if(!/^0[567][0-9]{8}$/.test(phone)){
-alert('رقم الهاتف غير صحيح! يرجى إدخال رقم جزائري مكوّن من 10 أرقام، ويبدأ بـ 05 أو 06 أو 07.');
-document.getElementById('cPhone').focus();
-return;
-}
+  if(!/^0[567][0-9]{8}$/.test(phone)){
+    alert('رقم الهاتف غير صحيح! يرجى إدخال رقم جزائري مكوّن من 10 أرقام، ويبدأ بـ 05 أو 06 أو 07.');
+    document.getElementById('cPhone').focus();
+    return;
+  }
 
-const submitButton=e.submitter;
-if(submitButton?.disabled)return;
-if(submitButton){
-submitButton.disabled=true;
-setTimeout(()=>{submitButton.disabled=false;},3000);
-}
+  const submitButton=e.submitter;
+  if(submitButton?.disabled)return;
+  if(submitButton){
+    submitButton.disabled=true;
+    setTimeout(()=>{submitButton.disabled=false;},3000);
+  }
 
-let items;
+  let items;
 
-if(e.target.dataset.mode==='single'){
-let q=Number(document.getElementById('oQty').value);
-const available=Number(selectedProduct.sizeStock?.[document.getElementById('oSize').value] ?? selectedProduct.stock ?? 0);
-if(q<1||q>available)return alert('الكمية المطلوبة غير متوفرة لهذا المقاس');
-items=[{
-id:selectedProduct.id,
-name:selectedProduct.name,
-price:selectedProduct.price,
-color:document.getElementById('oColor').value,
-size:document.getElementById('oSize').value,
-qty:q
-}];
-}else{
-items=cart.map(x=>({...x}));
-}
+  if(e.target.dataset.mode==='single'){
+    let q=Number(document.getElementById('oQty').value);
+    const color=document.getElementById('oColor').value;
+    const size=document.getElementById('oSize').value;
 
-items.forEach(x=>{
-let p=data.products.find(p=>p.id===x.id);
-x.price=getProductUnitPrice(p,x.qty);
-x.unitPrice=x.price;
-x.lineTotal=x.price*x.qty;
-p.stock-=x.qty;
-});
+    const available=Number(
+      selectedProduct.colorSizeStock?.[color]?.[size] ??
+      selectedProduct.sizeStock?.[size] ??
+      0
+    );
 
-let wilaya=document.getElementById('cWilaya').value;
-let deliveryType=document.getElementById('cDeliveryType').value;
-let carrier=document.getElementById('cCarrier').value;
-let configured=((data.shippingPrices||{})[carrier]||{})[wilaya]||{};
-let fee=configured[deliveryType==='المنزل'?'home':'office'];
+    if(q<1||q>available){
+      alert('الكمية المطلوبة غير متوفرة لهذا اللون والمقاس');
+      return;
+    }
 
-let order={
-  trackingToken:crypto.randomUUID(),
-id:'BC-'+Date.now().toString().slice(-7),
-date:new Date().toLocaleString('ar-DZ'),
-customer:document.getElementById('cName').value,
-phone:document.getElementById('cPhone').value,
-address:document.getElementById('cAddress').value,
-deliveryType,
-carrier,
-wilaya,
-city:document.getElementById('cCity').value,
-note:document.getElementById('cNote').value,
-items,
-delivery:(fee===undefined||fee===null||fee==='')?null:Number(fee),
-status:'جديد'
+    items=[{
+      id:selectedProduct.id,
+      name:selectedProduct.name,
+      price:selectedProduct.price,
+      color,
+      size,
+      qty:q
+    }];
+  }else{
+    items=cart.map(x=>({...x}));
+  }
+
+  for(const x of items){
+    let p=data.products.find(p=>p.id===x.id);
+    if(!p){
+      alert('تعذر العثور على أحد المنتجات');
+      return;
+    }
+
+    x.price=getProductUnitPrice(p,x.qty);
+    x.unitPrice=x.price;
+    x.lineTotal=x.price*x.qty;
+  }
+
+  let wilaya=document.getElementById('cWilaya').value;
+  let deliveryType=document.getElementById('cDeliveryType').value;
+  let carrier=document.getElementById('cCarrier').value;
+  let configured=((data.shippingPrices||{})[carrier]||{})[wilaya]||{};
+  let fee=configured[deliveryType==='المنزل'?'home':'office'];
+
+  let order={
+    trackingToken:crypto.randomUUID(),
+    id:'BC-'+Date.now().toString().slice(-7),
+    date:new Date().toLocaleString('ar-DZ'),
+    customer:document.getElementById('cName').value,
+    phone:document.getElementById('cPhone').value,
+    address:document.getElementById('cAddress').value,
+    deliveryType,
+    carrier,
+    wilaya,
+    city:document.getElementById('cCity').value,
+    note:document.getElementById('cNote').value,
+    items,
+    delivery:(fee===undefined||fee===null||fee==='')?null:Number(fee),
+    status:'جديد'
+  };
+
+  data.orders.unshift(order);
+  save();
+  let trackingUrl=null;
+
+  try{
+    trackingUrl=await window.firebaseCreateOrder(order);
+  }catch(err){
+    console.error('Cloud order save failed',err);
+  }
+
+  cart=[];
+  renderCart();
+  closeModal('orderModal');
+
+  alert(
+    'تم تسجيل طلبك بنجاح. رقم الطلب: '+order.id+
+    ' — سيتم تأكيد سعر التوصيل معك من الإدارة.'+
+    (trackingUrl
+      ?'\n\nرابط تتبع طلبك:\n'+trackingUrl
+      :'\n\nتعذر إنشاء رابط التتبع، يرجى التواصل مع الإدارة.')
+  );
+
+  e.target.reset();
+  renderProducts();
 };
 
-data.orders.unshift(order);
-save();
-let trackingUrl = null;
-
-try {
-  trackingUrl = await window.firebaseCreateOrder(order);
-} catch(err) {
-  console.error('Cloud order save failed',err);
-}
-cart=[];
-renderCart();
-closeModal('orderModal');
-alert(
-  'تم تسجيل طلبك بنجاح. رقم الطلب: ' + order.id +
-  ' — سيتم تأكيد سعر التوصيل معك من الإدارة.' +
-  (trackingUrl
-    ? '\n\nرابط تتبع طلبك:\n' + trackingUrl
-    : '\n\nتعذر إنشاء رابط التتبع، يرجى التواصل مع الإدارة.')
-);
-e.target.reset();
-renderProducts();
-};
 
 function openAdminLogin(){openModal('loginModal')}
 
